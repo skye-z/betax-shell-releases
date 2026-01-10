@@ -1,0 +1,15 @@
+{
+  "update_at": 1768069792000,
+  "list": [
+    {
+      "name_zh": "系统",
+      "name_en": "File",
+      "path": "community-system.json"
+    },
+    {
+      "name_zh": "Docker",
+      "name_en": "Docker",
+      "path": "community-docker.json"
+    },
+  ]
+}
