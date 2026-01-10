@@ -1,0 +1,45 @@
+{
+  "update_at": 1768071215000,
+  "list": [
+    {
+      "name_zh": "磁盘占用",
+      "description_zh": "显示磁盘使用情况",
+      "name_en": "Disk usage",
+      "description_en": "Display disk usage",
+      "platform": "all",
+      "command": "df -h"
+    },
+    {
+      "name_zh": "端口占用",
+      "description_zh": "显示正在被监听的端口列表",
+      "name_en": "Port usage",
+      "description_en": "Display the list of ports being monitored",
+      "platform": "all",
+      "command": "netstat -tuln | grep LISTEN"
+    },
+    {
+      "name_zh": "端口与进程关联查询",
+      "description_zh": "查看指定端口（以8080为例）对应的进程详细信息，包含进程号和运行用户",
+      "name_en": "Port and process association query",
+      "description_en": "View the detailed process information corresponding to the specified port (taking 8080 as an example), including the process ID and running user",
+      "platform": "all",
+      "command": "lsof -i :8080 | grep -v \"COMMAND\" | awk '{print $2, $3, $9}'"
+    },
+    {
+      "name_zh": "统计子目录大小并排序",
+      "description_zh": "统计当前目录下所有子目录的总大小，按大小降序排列",
+      "name_en": "Count and sort the size of each subdirectory in the directory",
+      "description_en": "Count the total size of all subdirectories in the current directory, sort them in descending order of size",
+      "platform": "all",
+      "command": "du -sh */ | sort -hr"
+    },
+    {
+      "name_zh": "后台运行进程",
+      "description_zh": "将指定命令后台运行，即使关闭终端也不会终止进程，同时将输出重定向到日志文件避免丢失",
+      "name_en": "Run process in background",
+      "description_en": "Run the specified command in the background, the process will not be terminated even if the terminal is closed, and the output is redirected to the log file to avoid loss",
+      "platform": "all",
+      "command": "nohup /path/to/your/command > process.log 2>&1 &"
+    },
+  ]
+}
