@@ -40,6 +40,6 @@
       "description_en": "Run the specified command in the background, the process will not be terminated even if the terminal is closed, and the output is redirected to the log file to avoid loss",
       "platform": "all",
       "command": "nohup /path/to/your/command > process.log 2>&1 &"
-    },
+    }
   ]
 }
