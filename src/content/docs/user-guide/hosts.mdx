@@ -1,0 +1,339 @@
+---
+title: 主机管理
+description: 学习如何添加、编辑和管理 SSH 主机
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+主机管理是 BetaXShell 的核心功能之一。本指南将教你如何高效地管理大量 SSH 服务器连接。
+
+## <Icon name="plus-circle" size="1.2em" /> 添加主机
+
+### 方式一：手动添加
+
+1. <Icon name="one" size="1.5em" color="var(--sl-color-accent)" /> 点击左侧边栏底部的 **"+"** 按钮
+
+2. <Icon name="two" size="1.5em" color="var(--sl-color-accent)" /> 填写主机基本信息：
+   - **名称**：为主机起一个容易识别的名称
+   - **分组**：选择或创建分组（如"生产环境"、"测试环境"）
+   - **标签**：添加自定义标签，便于搜索和分类
+
+3. <Icon name="three" size="1.5em" color="var(--sl-color-accent)" /> 配置连接参数：
+   - **主机**：IP 地址或域名
+   - **端口**：SSH 端口（默认 22）
+   - **用户名**：登录用户名
+
+4. <Icon name="four" size="1.5em" color="var(--sl-color-accent)" /> 选择认证方式：
+   - <Icon name="lock-closed" size="1em" /> **密码认证**：输入密码
+   - <Icon name="key" size="1em" /> **密钥认证**：从密钥管理器中选择密钥
+   - <Icon name="layers" size="1em" /> **混合认证**：优先使用密钥，失败时使用密码
+
+5. <Icon name="sliders" size="1.2em" /> 高级设置（可选）：
+   - **终端类型**：xterm、vt100 等
+   - **字符编码**：UTF-8、GBK 等
+   - **私钥文件**：指定特定的私钥文件路径
+
+6. <Icon name="checkmark" size="1.2em" /> 测试并保存：
+   - 点击 **"测试连接"** 验证配置
+   - 测试通过后点击 **"保存"**
+
+### 方式二：从 CSV 导入
+
+<Icon name="table" size="1em" /> 批量导入大量主机：
+
+1. 准备 CSV 文件，格式如下：
+
+```csv
+名称,主机,端口,用户名,分组,标签
+生产服务器1,192.168.1.100,22,root,生产,web
+生产服务器2,192.168.1.101,22,root,生产,api
+测试服务器,192.168.1.200,22,ubuntu,测试,dev
+```
+
+2. <Icon name="upload" size="1em" /> 点击左侧边栏的 **"更多"** 菜单
+3. <Icon name="file-csv" size="1em" /> 选择 **"导入主机"** > **"从 CSV 导入"**
+4. <Icon name="eye" size="1em" /> 选择 CSV 文件
+5. <Icon name="table" size="1em" /> 预览导入数据
+6. <Icon name="checkmark" size="1em" /> 确认导入
+
+### 方式三：从 SSH Config 导入
+
+<Icon name="terminal" size="1em" /> 从现有 SSH 配置文件导入：
+
+1. <Icon name="upload" size="1em" /> 点击 **"导入主机"** > **"从 SSH Config 导入"**
+2. <Icon name="file" size="1em" /> 选择 `~/.ssh/config` 文件
+3. <Icon name="eye" size="1em" /> 预览解析结果
+4. <Icon name="check-square" size="1em" /> 选择要导入的主机
+5. <Icon name="checkmark" size="1em" /> 确认导入
+
+## <Icon name="pencil" size="1.2em" /> 编辑主机
+
+### 修改主机配置
+
+1. <Icon name="mouse-right-click" size="1em" /> 在主机列表中右键点击主机
+2. <Icon name="pencil" size="1em" /> 选择 **"编辑"**
+3. <Icon name="sliders" size="1em" /> 修改配置信息
+4. <Icon name="floppy-disk" size="1em" /> 保存更改
+
+### 批量编辑
+
+1. <Icon name="keyboard" size="1em" /> 按住 `Ctrl` 选择多个主机
+2. <Icon name="mouse-right-click" size="1em" /> 右键点击选中的主机
+3. <Icon name="pencil" size="1em" /> 选择 **"批量编辑"**
+4. <Icon name="sliders" size="1em" /> 修改公共配置（如分组、标签）
+5. <Icon name="floppy-disk" size="1em" /> 保存更改
+
+## <Icon name="folder-tree" size="1.2em" /> 主机分组
+
+### 创建分组
+
+1. <Icon name="folder-plus" size="1em" /> 点击主机列表顶部的 **"分组管理"**
+2. <Icon name="plus" size="1em" /> 点击 **"新建分组"**
+3. <Icon name="pencil" size="1em" /> 输入分组名称
+4. <Icon name="swatchbook" size="1em" /> 选择图标和颜色
+5. <Icon name="floppy-disk" size="1em" /> 保存分组
+
+### 组织主机
+
+- <Icon name="hand-pointing" size="1em" /> **拖拽方式**：直接将主机拖拽到对应分组
+- <Icon name="squares-four" size="1em" /> **批量操作**：选中多个主机，右键 > "移动到分组"
+- <Icon name="magic-wand" size="1em" /> **自动分类**：通过标签自动创建分组
+
+### 分组操作
+
+- <Icon name="caret-vertical" size="1em" /> **展开/折叠**：点击分组名称展开或折叠
+- <Icon name="plug" size="1em" /> **连接分组**：右键分组 > "连接所有主机"
+- <Icon name="x-circle" size="1em" /> **批量断开**：右键分组 > "断开所有连接"
+
+## <Icon name="magnifying-glass" size="1.2em" /> 主机搜索
+
+### 快速搜索
+
+1. <Icon name="magnifying-glass" size="1em" /> 点击左侧边栏的搜索图标
+2. <Icon name="keyboard" size="1em" /> 输入搜索关键词：
+   - 主机名称
+   - IP 地址
+   - 标签
+   - 分组名称
+3. <Icon name="eye" size="1em" /> 实时显示匹配结果
+
+### 高级筛选
+
+<Icon name="funnel" size="1em" /> 点击搜索框旁的筛选图标，使用高级筛选：
+
+- <Icon name="folder" size="1em" /> **按分组筛选**：只显示特定分组的主机
+- <Icon name="tag" size="1em" /> **按标签筛选**：多选标签进行筛选
+- <Icon name="circle" size="1em" /> **按状态筛选**：已连接、未连接、连接中
+- <Icon name="bookmark" size="1em" /> **保存筛选条件**：将常用筛选条件保存
+
+## <Icon name="plug" size="1.2em" /> 连接管理
+
+### 快速连接
+
+**方式一：双击连接**
+- <Icon name="cursor-click" size="1em" /> 直接双击主机名称
+- <Icon name="plus" size="1em" /> 自动打开新的终端会话
+
+**方式二：右键菜单**
+- <Icon name="mouse-right-click" size="1em" /> 右键点击主机
+- <Icon name="plug" size="1em" /> 选择 **"连接"**
+
+**方式三：拖拽连接**
+- <Icon name="hand-pointing" size="1em" /> 将主机拖拽到终端区域
+- <Icon name="plus" size="1em" /> 创建新的标签页
+
+### 多会话管理
+
+<Icon name="squares-four" size="1.2em" /> 同时连接到同一主机的多个会话：
+
+1. <Icon name="mouse-right-click" size="1em" /> 右键点击主机
+2. <Icon name="plus" size="1em" /> 选择 **"新建会话"**
+3. <Icon name="window" size="1em" /> 可以打开多个独立的终端窗口
+
+### 会话保持
+
+BetaXShell 支持会话保持功能：
+
+- <Icon name="arrow-clockwise" size="1em" /> **自动重连**：连接断开后自动尝试重连
+- <Icon name="heart-pulse" size="1em" /> **保持连接**：定期发送心跳包保持会话活跃
+- <Icon name="arrow-u-up-left" size="1em" /> **会话恢复**：应用重启后恢复之前的会话
+
+<Icon name="gear" size="1em" /> 配置会话保持：
+
+1. 进入 **"设置"** > **"连接"**
+2. <Icon name="toggle-on" size="1em" /> 启用 **"自动重连"**
+3. <Icon name="clock" size="1em" /> 设置 **"心跳间隔"**（建议 30 秒）
+4. <Icon name="toggle-on" size="1em" /> 启用 **"会话恢复"**
+
+## <Icon name="info" size="1.2em" /> 主机状态
+
+### 状态标识
+
+- <Icon name="circle" size="1em" color="var(--sl-color-success)" /> **在线**：主机可连接，当前已连接
+- <Icon name="circle" size="1em" color="var(--sl-color-danger)" /> **离线**：主机不可达
+- <Icon name="circle" size="1em" color="var(--sl-color-warning)" /> **连接中**：正在建立连接
+- <Icon name="circle" size="1em" color="var(--sl-color-gray)" /> **未连接**：主机在线但未连接
+
+### 连接信息
+
+<Icon name="chart-bar" size="1em" /> 查看主机详细连接信息：
+
+1. <Icon name="mouse-right-click" size="1em" /> 右键点击主机
+2. <Icon name="eye" size="1em" /> 选择 **"查看详情"**
+3. <Icon name="info" size="1em" /> 显示信息：
+   - 连接时长
+   - 数据传输量
+   - 延迟（Ping 值）
+   - 会话数量
+
+## <Icon name="lightning" size="1.2em" /> 主机操作
+
+### 批量操作
+
+<Icon name="check-square" size="1em" /> 选中多个主机后可以执行：
+
+- <Icon name="plug" size="1em" /> **批量连接**：同时连接所有选中的主机
+- <Icon name="x-circle" size="1em" /> **批量断开**：断开所有连接
+- <Icon name="pencil" size="1em" /> **批量编辑**：修改公共配置
+- <Icon name="trash" size="1em" /> **批量删除**：删除多个主机
+- <Icon name="download" size="1em" /> **导出配置**：导出选中主机的配置
+
+### 远程命令
+
+<Icon name="terminal" size="1em" /> 在不连接的情况下执行命令：
+
+1. <Icon name="mouse-right-click" size="1em" /> 右键点击主机
+2. <Icon name="lightning" size="1em" /> 选择 **"执行命令"**
+3. <Icon name="keyboard" size="1em" /> 输入命令
+4. <Icon name="play" size="1em" /> 命令将在后台执行
+5. <Icon name="eye" size="1em" /> 返回执行结果
+
+<Icon name="info" size="1em" /> 适用于简单的查询和管理工作。
+
+## <Icon name="arrow-left-right" size="1.2em" /> 导入导出
+
+### 导出主机配置
+
+1. <Icon name="more" size="1em" /> 点击 **"更多"** 菜单
+2. <Icon name="download" size="1em" /> 选择 **"导出主机"**
+3. <Icon name="file" size="1em" /> 选择格式：
+   - **JSON**：包含完整配置信息
+   - **CSV**：表格格式，方便编辑
+   - **加密格式**：密码加密保护
+4. <Icon name="folder-open" size="1em" /> 选择保存位置
+5. <Icon name="checkmark" size="1em" /> 完成导出
+
+### 导入主机配置
+
+1. <Icon name="more" size="1em" /> 点击 **"更多"** 菜单
+2. <Icon name="upload" size="1em" /> 选择 **"导入主机"**
+3. <Icon name="folder-open" size="1em" /> 选择之前导出的配置文件
+4. <Icon name="eye" size="1em" /> 预览导入数据
+5. <Icon name="git-merge" size="1em" /> 选择导入模式：
+   - **追加**：保留现有主机，添加新主机
+   - **覆盖**：覆盖同名主机
+   - **合并**：智能合并配置
+6. <Icon name="checkmark" size="1em" /> 确认导入
+
+## <Icon name="shield-check" size="1.2em" /> 安全建议
+
+### 密码安全
+
+- <Icon name="warning" size="1em" color="var(--sl-color-warning)" /> 不要在主机名称中包含敏感信息
+- <Icon name="checkmark" size="1em" color="var(--sl-color-success)" /> 使用密钥认证代替密码
+- <Icon name="checkmark" size="1em" color="var(--sl-color-success)" /> 定期更换密码
+- <Icon name="checkmark" size="1em" color="var(--sl-color-success)" /> 为不同主机使用不同密码
+
+### 访问控制
+
+- <Icon name="lock" size="1em" /> 不要在共享电脑上保存密码
+- <Icon name="lock" size="1em" /> 使用应用锁定功能（设置 > 安全 > 应用锁定）
+- <Icon name="x-circle" size="1em" /> 离开时锁定应用
+
+### 备份配置
+
+<Icon name="download" size="1em" /> 定期备份主机配置：
+
+1. <Icon name="shield-check" size="1em" /> 导出主机配置（加密格式）
+2. <Icon name="folder" size="1em" /> 保存到安全位置
+3. <Icon name="arrow-clockwise" size="1em" /> 定期更新备份
+
+## <Icon name="star" size="1.2em" /> 高级技巧
+
+### 1. 使用模板
+
+<Icon name="copy" size="1em" /> 为主机创建配置模板：
+
+1. <Icon name="sliders" size="1em" /> 配置好一个完整的主机信息
+2. <Icon name="mouse-right-click" size="1em" /> 右键 > **"保存为模板"**
+3. <Icon name="plus" size="1em" /> 以后添加主机时选择模板快速配置
+
+### 2. 动态端口转发
+
+<Icon name="share" size="1em" /> 配置本地端口转发：
+
+1. <Icon name="pencil" size="1em" /> 编辑主机 > 高级设置
+2. <Icon name="plus" size="1em" /> 添加端口转发规则：
+   - 本地端口：`8080`
+   - 远程主机：`localhost`
+   - 远程端口：`80`
+3. <Icon name="floppy-disk" size="1em" /> 保存后连接主机
+4. <Icon name="globe" size="1em" /> 访问 `http://localhost:8080` 即可访问远程服务
+
+### 3. 跳板机配置
+
+<Icon name="signpost" size="1em" /> 通过跳板机连接内网主机：
+
+1. <Icon name="plug" size="1em" /> 配置跳板机连接
+2. <Icon name="pencil" size="1em" /> 编辑目标主机 > 高级设置
+3. <Icon name="signpost" size="1em" /> 设置 **"通过主机连接"**
+4. <Icon name="server" size="1em" /> 选择跳板机
+5. <Icon name="floppy-disk" size="1em" /> 保存配置
+
+### 4. 环境变量
+
+<Icon name="braces" size="1em" /> 为每个主机设置不同的环境变量：
+
+1. <Icon name="pencil" size="1em" /> 编辑主机 > 高级设置
+2. <Icon name="plus" size="1em" /> 添加环境变量：
+   - `PATH=/usr/local/bin:$PATH`
+   - `EDITOR=vim`
+3. <Icon name="plug" size="1em" /> 连接时自动加载环境变量
+
+## <Icon name="wrench" size="1.2em" /> 故障排除
+
+### 连接失败
+
+<Icon name="bug" size="1em" /> **问题**：无法连接到主机
+
+**解决方案**：
+1. <Icon name="wifi" size="1em" /> 检查网络连接
+2. <Icon name="magnifying-glass" size="1em" /> 确认主机地址和端口正确
+3. <Icon name="shield" size="1em" /> 检查防火墙设置
+4. <Icon name="server" size="1em" /> 验证 SSH 服务是否运行
+
+### 认证失败
+
+<Icon name="lock" size="1em" /> **问题**：密码或密钥认证失败
+
+**解决方案**：
+1. <Icon name="user" size="1em" /> 确认用户名正确
+2. <Icon name="eye" size="1em" /> 检查密码是否正确
+3. <Icon name="key" size="1em" /> 验证密钥文件存在且格式正确
+4. <Icon name="file-text" size="1em" /> 查看 SSH 服务器日志
+
+### 连接超时
+
+<Icon name="clock" size="1em" /> **问题**：连接请求超时
+
+**解决方案**：
+1. <Icon name="plus" size="1em" /> 增加"连接超时"设置值
+2. <Icon name="graph-up" size="1em" /> 检查网络延迟
+3. <Icon name="share" size="1em" /> 尝试使用代理或跳板机
+4. <Icon name="users" size="1em" /> 联系网络管理员
+
+## 相关链接
+
+- <Icon name="terminal" size="1em" /> [终端使用](/user-guide/terminal) - 学习终端高级功能
+- <Icon name="key" size="1em" /> [密钥管理](/user-guide/keys) - 配置 SSH 密钥认证
+- <Icon name="question-circle" size="1em" /> [常见问题](/faq) - 查看更多问题解答

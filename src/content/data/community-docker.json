@@ -1,0 +1,29 @@
+{
+  "update_at": 1768071215000,
+  "list": [
+    {
+      "name_zh": "一键安装(社区)",
+      "description_zh": "使用Github中SuperManito/LinuxMirrors的一键脚本安装",
+      "name_en": "One click installation (community) ",
+      "description_en": "Install SuperManito/LinuxMirrors using a one click script from Github",
+      "platform": "all",
+      "command": "bash <(curl -sSL https://linuxmirrors.cn/docker.sh)"
+    },
+    {
+      "name_zh": "一键安装(官方)",
+      "description_zh": "使用Docker官方的一键脚本安装",
+      "name_en": "One click installation (official)",
+      "description_en": "RunInstall using Docker's official one click script",
+      "platform": "all",
+      "command": "sh <(curl -sSL https://get.docker.com)"
+    },
+    {
+      "name_zh": "获取容器日志列表",
+      "description_zh": "获取容器运行时日志列表(非容器内部服务日志)",
+      "name_en": "Retrieve container log list",
+      "description_en": "Retrieve the list of container runtime logs (non container internal service logs)",
+      "platform": "all",
+      "command": "docker info | grep -i \"Docker Root Dir\" | awk '{print $NF \"/containers\"}' | xargs -I {} find {} -type f -name \"*.log\" -exec sh -c 'log_path=\"{}\"; cid=$(basename $(dirname \"$log_path\")); cname=$(docker inspect --format \"{{.Name}}\" \"$cid\" 2>/dev/null | sed \"s/^\\///\"); [ -z \"$cname\" ] && cname=\"未知容器\"; du -sh \"$log_path\" | awk -v cid=\"$cid\" -v cname=\"$cname\" \"{print $0, \" (容器ID: \" cid \", 容器名称: \" cname \")\"}\"' \\;"
+    }
+  ]
+}

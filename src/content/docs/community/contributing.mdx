@@ -1,0 +1,440 @@
+---
+title: 贡献命令
+description: 向 BetaXShell 社区贡献你的快捷命令
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+分享你的创造力！向 BetaXShell 社区贡献命令，帮助全球用户提升工作效率。
+
+## <Icon name="heart" size="1.2em" /> 为什么贡献？
+
+### <Icon name="users" size="1.2em" /> 对社区
+
+- <Icon name="handshake" size="1em" /> 帮助成千上万的开发者和运维人员
+- <Icon name="globe" size="1em" /> 参与全球化开源项目
+- <Icon name="lightbulb" size="1em" /> 分享你的专业知识和经验
+- <Icon name="trophy" size="1em" /> 获得社区认可和感谢
+
+### <Icon name="user" size="1.2em" /> 对自己
+
+- <Icon name="graph-up" size="1em" /> 提升个人技术影响力
+- <Icon name="graduation-cap" size="1em" /> 深入理解 BetaXShell 架构
+- <Icon name="wrench" size="1em" /> 改进代码质量和最佳实践
+- <Icon name="id-card" size="1em" /> 建立专业技术品牌
+
+## 命令类型
+
+BetaXShell 支持多种类型的命令，你可以选择最适合的类型：
+
+### 1. Shell 命令
+
+<Icon name="terminal" size="1.2em" /> 简单的 Shell 脚本，适合系统管理任务。
+
+**适用场景**：
+- <Icon name="info" size="1em" /> 系统信息查询
+- <Icon name="folder" size="1em" /> 文件操作
+- <Icon name="server" size="1em" /> 服务管理
+- <Icon name="file-text" size="1em" /> 日志分析
+
+**示例**：
+```bash
+# 查看系统信息
+uname -a && df -h && free -m
+
+# 重启 Nginx
+systemctl restart nginx
+```
+
+### 2. 复杂脚本
+
+<Icon name="code" size="1.2em" /> 包含多个步骤的复杂操作流程。
+
+**适用场景**：
+- <Icon name="rocket" size="1em" /> 应用部署
+- <Icon name="gear" size="1em" /> 系统初始化
+- <Icon name="database" size="1em" /> 数据迁移
+- <Icon name="layers" size="1em" /> 批量操作
+
+**要求**：
+- <Icon name="list-checks" size="1em" /> 提供清晰的执行步骤说明
+- <Icon name="shield-check" size="1em" /> 包含错误处理逻辑
+- <Icon name="arrow-u-up-left" size="1em" /> 支持回滚机制
+
+### 3. API 集成
+
+<Icon name="plug" size="1.2em" /> 调用 BetaXShell API 实现高级功能。
+
+**适用场景**：
+- <Icon name="file" size="1em" /> 文件传输
+- <Icon name="squares-four" size="1em" /> 多主机协同
+- <Icon name="chart-line" size="1em" /> 状态监控
+- <Icon name="table" size="1em" /> 数据收集
+
+**参考文档**：
+- <Icon name="book" size="1em" /> 查看 BetaXShell API 文档
+- <Icon name="code" size="1em" /> 学习现有 API 命令实现
+- <Icon name="diagram" size="1em" /> 理解数据格式和协议
+
+## 准备工作
+
+### 1. Fork 仓库
+
+```bash
+# 1. 访问 GitHub 仓库
+https://github.com/betaxshell/community-commands
+
+# 2. 点击 Fork 按钮创建副本
+# 3. 克隆你的 Fork
+git clone https://github.com/YOUR_USERNAME/community-commands.git
+cd community-commands
+```
+
+### 2. 安装依赖
+
+```bash
+# 安装 Node.js 依赖（如需测试）
+npm install
+
+# 或使用 Yarn
+yarn install
+```
+
+### 3. 了解项目结构
+
+```
+community-commands/
+├── commands/           # 命令定义文件
+│   ├── system/        # 系统管理命令
+│   ├── deploy/        # 部署相关命令
+│   └── monitoring/    # 监控命令
+├── templates/         # 命令模板
+└── docs/             # 命令文档
+```
+
+## <Icon name="pencil" size="1.2em" /> 创建命令
+
+### 步骤 1：定义命令元数据
+
+在 `commands/` 目录下创建命令配置文件：
+
+```yaml
+# commands/system/health-check.yaml
+id: health-check
+name: 系统健康检查
+name_en: System Health Check
+version: 1.0.0
+author: your-name
+description: 一键获取服务器全面健康报告
+description_en: Get comprehensive server health report
+category: system
+tags:
+  - monitoring
+  - system
+  - health
+icon: heartbeat
+```
+
+### 步骤 2：编写命令脚本
+
+```bash
+# commands/system/health-check.sh
+#!/bin/bash
+
+echo "=== 系统健康检查 ==="
+echo ""
+
+# CPU 使用率
+echo "📊 CPU 使用率:"
+top -bn1 | grep "Cpu(s)" | awk '{print "  " $2}'
+echo ""
+
+# 内存使用
+echo "💾 内存使用:"
+free -h | awk 'NR==2{printf "  总计: %s\n  已用: %s\n  可用: %s\n  使用率: %.2f%%\n", $2,$3,$7,($3/$2)*100}'
+echo ""
+
+# 磁盘使用
+echo "💿 磁盘使用:"
+df -h | awk 'NR>1 && $5+0 > 80 {print "  ⚠️ " $1 " - " $5 " (" $3 " 可用)"}'
+df -h | awk 'NR>1 && $5+0 <= 80 {print "  ✅ " $1 " - " $5}'
+echo ""
+
+# 系统负载
+echo "⚖️ 系统负载:"
+uptime | awk '{print "  " $10 " " $11 " " $12}'
+echo ""
+
+# 进程检查
+echo "🔍 关键进程状态:"
+for service in nginx mysql docker; do
+  if systemctl is-active --quiet $service; then
+    echo "  ✅ $service: 运行中"
+  else
+    echo "  ❌ $service: 未运行"
+  fi
+done
+
+echo ""
+echo "=== 检查完成 ==="
+```
+
+### 步骤 3：添加配置模板
+
+```yaml
+# commands/system/health-check.config.yaml
+parameters:
+  - name: detailed
+    label: 详细模式
+    type: boolean
+    default: false
+    description: 显示更详细的系统信息
+
+  - name: email_alert
+    label: 邮件告警
+    type: string
+    required: false
+    description: 问题检测时发送告警邮件
+```
+
+### 步骤 4：编写使用文档
+
+```markdown
+# commands/system/health-check.md
+
+## 功能说明
+
+本命令用于快速检查服务器的健康状态，包括 CPU、内存、磁盘使用情况，以及关键服务的运行状态。
+
+## 使用场景
+
+- 日常服务器巡检
+- 性能问题排查
+- 资源使用评估
+- 服务状态确认
+
+## 参数说明
+
+- **详细模式**：开启后显示进程列表、网络连接等详细信息
+- **邮件告警**：可选，当检测到问题时发送告警邮件
+
+## 输出说明
+
+命令会输出以下信息：
+- ✅ 正常：绿色标识
+- ⚠️ 警告：黄色标识（如磁盘使用超过 80%）
+- ❌ 错误：红色标识（如服务未运行）
+
+## 注意事项
+
+- 需要 root 权限才能查看所有服务状态
+- 邮件告警需要预先配置邮件发送服务
+- 建议每天定时执行以保持监控
+
+## 常见问题
+
+**Q: 为什么某些服务显示为"未运行"？**
+A: 可能是服务未安装或服务名称不同，请根据实际情况调整服务列表。
+
+**Q: 磁盘使用警告阈值可以调整吗？**
+A: 可以编辑脚本修改阈值，默认为 80%。
+```
+
+### 步骤 5：添加测试用例
+
+```javascript
+// tests/system/health-check.test.js
+describe('Health Check Command', () => {
+  test('should execute successfully', async () => {
+    const result = await executeCommand('health-check');
+    expect(result.exitCode).toBe(0);
+    expect(result.output).toContain('系统健康检查');
+  });
+
+  test('should detect high disk usage', async () => {
+    const result = await executeCommand('health-check', { detailed: true });
+    expect(result.output).toMatch(/磁盘使用/);
+  });
+});
+```
+
+## <Icon name="upload" size="1.2em" /> 提交贡献
+
+### 1. 测试命令
+
+```bash
+# 本地测试命令
+./scripts/test-command.sh commands/system/health-check
+
+# 或使用 BetaXShell 测试界面
+```
+
+### 2. 提交代码
+
+```bash
+# 添加文件
+git add commands/system/health-check.*
+
+# 提交变更
+git commit -m "feat: 添加系统健康检查命令
+
+- 支持CPU、内存、磁盘使用检查
+- 检测关键服务状态
+- 可选详细模式和邮件告警"
+
+# 推送到你的 Fork
+git push origin feature/add-health-check
+```
+
+### 3. 创建 Pull Request
+
+1. <Icon name="github-logo" size="1em" /> 访问你的 Fork 页面
+2. <Icon name="git-pull-request" size="1em" /> 点击 **"Compare & pull request"** 按钮
+3. <Icon name="pencil" size="1em" /> 填写 PR 信息：
+   - **标题**：`feat: 添加系统健康检查命令`
+   - **描述**：简要说明命令功能和使用方法
+   - **关联 Issue**：如有相关 Issue，关联它们
+4. <Icon name="upload" size="1em" /> 提交 PR
+
+## <Icon name="eye" size="1.2em" /> PR 审核流程
+
+### 自动检查
+
+- <Icon name="checkmark" size="1em" /> 代码风格检查
+- <Icon name="checkmark" size="1em" /> 命令语法验证
+- <Icon name="checkmark" size="1em" /> 安全扫描
+- <Icon name="checkmark" size="1em" /> 文档完整性检查
+
+### 人工审核
+
+<Icon name="users" size="1em" /> 维护者会检查：
+
+1. **功能完整性**
+   - 命令是否按预期工作
+   - 错误处理是否完善
+   - 边界情况是否考虑
+
+2. **代码质量**
+   - 代码结构是否清晰
+   - 是否遵循最佳实践
+   - 注释是否充分
+
+3. **文档质量**
+   - 说明是否清晰易懂
+   - 示例是否完整
+   - 参数说明是否详细
+
+4. **安全性**
+   - 是否存在安全漏洞
+   - 权限要求是否合理
+   - 用户输入是否验证
+
+### 反馈和修改
+
+- <Icon name="magnifying-glass" size="1em" /> 审核者可能会提出修改建议
+- <Icon name="chat-text" size="1em" /> 及时回复评论和问题
+- <Icon name="pencil" size="1em" /> 根据反馈更新代码
+- <Icon name="upload" size="1em" /> 更新后请求重新审核
+
+## <Icon name="trophy" size="1.2em" /> 审核通过后
+
+1. <Icon name="confetti" size="1em" /> 你的命令将被合并到主分支
+2. <Icon name="box" size="1em" /> 下一个版本发布时包含你的命令
+3. <Icon name="medal" size="1em" /> 在贡献者名单中展示你的信息
+4. <Icon name="mail" size="1em" /> 收到合并通知邮件
+
+## <Icon name="arrows-clockwise" size="1.2em" /> 维护和更新
+
+### 处理用户反馈
+
+- <Icon name="eye" size="1em" /> 定期查看命令 Issues
+- <Icon name="chat-text" size="1em" /> 回答用户问题
+- <Icon name="wrench" size="1em" /> 修复发现的 Bug
+- <Icon name="rocket" size="1em" /> 优化性能和体验
+
+### 版本升级
+
+- <Icon name="number" size="1em" /> 更新命令版本号
+- <Icon name="file-text" size="1em" /> 记录变更日志
+- <Icon name="shield-check" size="1em" /> 保持向后兼容
+- <Icon name="bell" size="1em" /> 通知用户更新
+
+## 最佳实践
+
+### 1. 保持简单
+
+- <Icon name="one" size="1em" /> 从小功能开始，逐步完善
+- <Icon name="two" size="1em" /> 避免过度复杂的逻辑
+- <Icon name="three" size="1em" /> 专注于解决实际问题
+
+### 2. 完善文档
+
+- <Icon name="book" size="1em" /> 提供清晰的使用说明
+- <Icon name="lightbulb" size="1em" /> 包含实际使用示例
+- <Icon name="warning" size="1em" /> 说明限制和注意事项
+
+### 3. 注重安全
+
+- <Icon name="shield-check" size="1em" /> 验证用户输入
+- <Icon name="key" size="1em" /> 使用最小权限原则
+- <Icon name="lock" size="1em" /> 避免硬编码敏感信息
+
+### 4. 优雅降级
+
+- <Icon name="info" size="1em" /> 提供有意义的错误信息
+- <Icon name="arrow-u-up-left" size="1em" /> 支持部分失败场景
+- <Icon name="file-text" size="1em" /> 记录详细的日志
+
+### 5. 性能优化
+
+- <Icon name="lightning" size="1em" /> 避免不必要的等待
+- <Icon name="database" size="1em" /> 使用缓存减少重复操作
+- <Icon name="x-circle" size="1em" /> 支持中断和取消
+
+## 获取帮助
+
+### 文档资源
+
+- <Icon name="book" size="1em" /> [命令开发指南](https://github.com/betaxshell/community-commands/wiki)
+- <Icon name="plug" size="1em" /> [API 参考文档](https://github.com/skye-z/betax-shell-releases/wiki/API)
+- <Icon name="users" size="1em" /> [贡献者指南](https://github.com/betaxshell/community-commands/blob/master/CONTRIBUTING.md)
+
+### 社区支持
+
+- <Icon name="chats-circle" size="1em" /> **GitHub Discussions**：提问和交流
+- <Icon name="discord-logo" size="1em" /> **Discord 社区**：实时讨论
+- <Icon name="mail" size="1em" /> **邮件列表**：接收更新通知
+
+## 优秀贡献案例
+
+### 案例 1：Docker 容器管理
+
+@dockerexpert 贡献的 Docker 容器管理命令集，包含：
+- 容器批量启停
+- 镜像更新和清理
+- 资源监控
+- 日志查看
+
+<Icon name="trophy" size="1em" /> **影响**：被 5000+ 用户安装，获得 200+ Star
+
+### 案例 2：应用一键部署
+
+@devops-master 贡献的应用部署命令，支持：
+- 多环境配置
+- 零停机部署
+- 自动回滚
+- 健康检查
+
+<Icon name="trophy" size="1em" /> **影响**：简化了无数团队的部署流程
+
+## <Icon name="rocket" size="1.2em" /> 开始贡献
+
+准备好开始了吗？
+
+1. <Icon name="github-logo" size="1em" /> Fork [community-commands](https://github.com/betaxshell/community-commands) 仓库
+2. <Icon name="book" size="1em" /> 阅读 [贡献指南](https://github.com/betaxshell/community-commands/blob/master/CONTRIBUTING.md)
+3. <Icon name="lightbulb" size="1em" /> 选择一个想法或查看[待办事项](https://github.com/betaxshell/community-commands/issues)
+4. <Icon name="code" size="1em" /> 开始编码！
+5. <Icon name="git-pull-request" size="1em" /> 提交你的第一个 PR
+
+期待你的贡献！🎉

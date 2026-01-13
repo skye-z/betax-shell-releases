@@ -1,0 +1,156 @@
+---
+title: 快速上手
+description: 5 分钟快速上手 BetaXShell
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+欢迎使用 BetaXShell！本指南将帮助你在 5 分钟内完成第一次 SSH 连接。
+
+## <Icon name="rocket" size="1.2em" /> 快速开始
+
+### 第一步：添加 SSH 主机
+
+<Icon name="number-1" size="1.5em" color="var(--sl-color-accent)" /> **打开主机添加对话框**
+
+- 点击左侧边栏底部的 **"+"** 按钮
+- 或使用快捷键 `Ctrl + N`
+
+<Icon name="number-2" size="1.5em" color="var(--sl-color-accent)" /> **填写主机信息**
+
+- **名称**：为服务器起一个容易识别的名字（如"生产服务器"）
+- **主机**：输入 IP 地址或域名（如 `192.168.1.100` 或 `server.example.com`）
+- **端口**：SSH 端口，默认为 `22`
+- **用户名**：登录用户名（如 `root` 或 `ubuntu`）
+
+<Icon name="number-3" size="1.5em" color="var(--sl-color-accent)" /> **配置认证方式**
+
+选择一种认证方式：
+
+- <Icon name="lock-closed" size="1em" /> **密码认证**：直接输入 SSH 密码
+- <Icon name="key" size="1em" /> **密钥认证**：从密钥管理器选择已导入的 SSH 私钥
+
+<Icon name="number-4" size="1.5em" color="var(--sl-color-accent)" /> **保存并测试**
+
+- 点击 **"测试连接"** 验证配置是否正确
+- 测试通过后点击 **"保存"**
+
+### 第二步：连接到服务器
+
+<Icon name="plug" size="1.2em" /> **连接方式**
+
+**方式一：双击连接**
+- 直接双击主机列表中的主机名称
+- 自动创建新的终端会话
+
+**方式二：右键菜单**
+- 右键点击主机
+- 选择 **"连接"**
+
+**方式三：拖拽连接**
+- 将主机拖拽到终端区域
+- 创建新的标签页
+
+<Icon name="checkmark-circle" size="1em" color="var(--sl-color-success)" /> 连接成功后，你将看到终端界面，可以开始执行命令了！
+
+### 第三步：基本终端操作
+
+<Icon name="terminal" size="1.2em" /> **常用操作**
+
+- <Icon name="copy" size="1em" /> **复制**：选中文本后自动复制到剪贴板
+- <Icon name="clipboard" size="1em" /> **粘贴**：右键点击终端或按 `Ctrl+Shift+V`
+- <Icon name="text-size" size="1em" /> **调整字体**：`Ctrl + Plus/Minus` 放大/缩小字体
+- <Icon name="x-circle" size="1em" /> **关闭会话**：点击标签页的关闭按钮
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **提示**：你可以打开多个终端标签页，同时管理多个会话！
+
+### 第四步：使用 SFTP 传输文件
+
+<Icon name="folder" size="1.2em" /> **打开文件浏览器**
+
+- 连接到主机后，点击工具栏的 **"文件"** 按钮
+- 或按快捷键 `Ctrl + F`
+
+<Icon name="upload" size="1em" /> **上传文件**
+
+- 从本地文件管理器拖拽文件到 SFTP 浏览器
+- 或点击 **"上传"** 按钮选择文件
+- 实时查看传输进度
+
+<Icon name="download" size="1em" /> **下载文件**
+
+- 在 SFTP 浏览器中选择文件
+- 点击 **"下载"** 按钮
+- 文件将保存到默认下载目录
+
+### 第五步：使用系统托盘
+
+<Icon name="bell" size="1.2em" /> **最小化到托盘**
+
+- 点击窗口的关闭按钮
+- 应用最小化到系统托盘
+- 右键托盘图标访问快捷菜单
+
+<Icon name="clock" size="1em" /> **快速连接最近主机**
+
+- 右键托盘图标
+- 在 **"最近主机"** 列表中选择主机
+- 一键启动连接
+
+## <Icon name="lightbulb" size="1.2em" /> 实用技巧
+
+### 提高效率的快捷键
+
+| 快捷键 | 功能 |
+|--------|------|
+| `Ctrl + N` | 添加新主机 |
+| `Ctrl + T` | 新建终端标签页 |
+| `Ctrl + W` | 关闭当前标签页 |
+| `Ctrl + Tab` | 切换到下一个标签页 |
+| `Ctrl + Shift + V` | 粘贴文本 |
+| `Ctrl + Plus` | 增大字体 |
+| `Ctrl + Minus` | 减小字体 |
+| `Ctrl + 0` | 重置字体大小 |
+| `F11` | 全屏模式 |
+
+### 主机分组管理
+
+<Icon name="folder-tree" size="1em" /> 创建分组帮助组织大量主机：
+
+1. 点击主机列表顶部的 **"分组管理"**
+2. 点击 **"新建分组"**
+3. 输入分组名称（如"生产环境"、"测试环境"）
+4. 将主机拖拽到对应分组
+
+### 批量操作
+
+<Icon name="layers" size="1em" /> 选中多个主机后可以：
+
+- 同时连接多台服务器
+- 批量编辑主机配置
+- 批量删除主机
+- 导出选中主机的配置
+
+## <Icon name="shield-check" size="1.2em" /> 安全建议
+
+- <Icon name="lock-closed" size="1em" /> 使用密钥认证代替密码
+- <Icon name="key" size="1em" /> 为不同主机使用不同的密钥
+- <Icon name="eye-off" size="1em" /> 不要在共享电脑上保存密码
+- <Icon name="gear" size="1em" /> 启用应用锁定功能（设置 > 安全）
+
+## <Icon name="checkmark-circle" size="1.2em" /> 完成配置
+
+恭喜！你已经完成了基本配置。现在你可以：
+
+- <Icon name="book" size="1em" /> 查看[主机管理](/user-guide/hosts)了解高级功能
+- <Icon name="terminal" size="1em" /> 阅读[终端使用指南](/user-guide/terminal)学习更多技巧
+- <Icon name="folder" size="1em" /> 查看[SFTP 文件管理](/user-guide/sftp)掌握文件操作
+- <Icon name="store" size="1em" /> 浏览[社区命令市场](/community/overview)安装实用命令
+
+## <Icon name="question-circle" size="1.2em" /> 需要帮助？
+
+- <Icon name="book" size="1em" /> 查看[完整用户指南](/user-guide/hosts)
+- <Icon name="chats-circle" size="1em" /> 访问[常见问题](/faq)
+- <Icon name="wrench" size="1em" /> 查看[故障排除](/troubleshooting)
+
+祝你使用愉快！🎉

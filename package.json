@@ -1,0 +1,23 @@
+{
+  "name": "betaxshell-docs",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "yarn@4.12.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node copy-data.js && astro build",
+    "preview": "astro preview",
+    "copy-data": "node copy-data.js"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.37.2",
+    "astro": "^5.16.8",
+    "starlight-theme-nova": "^0.11.4"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.6.1",
+    "rehype-stringify": "^10.0.1",
+    "sharp": "^0.34.5",
+    "unified": "^11.0.5"
+  }
+}

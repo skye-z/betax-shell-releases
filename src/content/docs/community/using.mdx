@@ -1,0 +1,254 @@
+---
+title: 使用社区命令
+description: 学习如何使用已安装的社区快捷命令
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+安装社区命令后，你可以在 BetaXShell 中方便地使用它们来提高工作效率。本指南将教你如何使用和管理这些命令。
+
+## <Icon name="play" size="1.2em" /> 访问快捷命令
+
+### 方式一：通过命令面板
+
+1. <Icon name="door-enter" size="1em" /> 打开 BetaXShell
+2. <Icon name="command" size="1em" /> 点击工具栏的 **"快捷命令"** 按钮
+3. 或使用快捷键 `Ctrl + Shift + C`
+
+### 方式二：通过右键菜单
+
+1. <Icon name="mouse-right-click" size="1em" /> 右键点击主机
+2. <Icon name="lightning" size="1em" /> 选择 **"执行命令"**
+
+## <Icon name="terminal" size="1.2em" /> 执行命令
+
+### 单主机执行
+
+<Icon name="number-1" size="1.5em" color="var(--sl-color-accent)" /> **选择主机**
+
+- 在主机列表中选择目标主机
+- 或右键直接从主机执行
+
+<Icon name="number-2" size="1.5em" color="var(--sl-color-accent)" /> **选择命令**
+
+- 在命令列表中浏览或搜索命令
+- 查看命令说明和参数
+
+<Icon name="number-3" size="1.5em" color="var(--sl-color-accent)" /> **配置参数（可选）**
+
+- 某些命令支持自定义参数
+- 填写参数值或使用默认值
+
+<Icon name="number-4" size="1.5em" color="var(--sl-color-accent)" /> **执行**
+
+- 点击 **"执行"** 按钮
+- 查看执行结果
+
+### 批量执行
+
+<Icon name="squares-four" size="1.2em" /> 同时在多台主机上执行命令：
+
+1. <Icon name="check-square" size="1em" /> 按住 `Ctrl` 选择多个主机
+2. <Icon name="lightning" size="1em" /> 右键点击选中的主机
+3. <Icon name="terminal" size="1em" /> 选择 **"批量执行命令"**
+4. <Icon name="play" size="1em" /> 选择命令并执行
+
+<Icon name="info" size="1em" /> **提示**：批量执行会为每台主机创建独立的执行窗口，方便查看各自的结果。
+
+## <Icon name="puzzle-piece" size="1.2em" /> 命令类型
+
+### Shell 命令
+
+<Icon name="code" size="1em" /> 直接执行 Shell 脚本：
+
+- <Icon name="lightning" size="1em" /> 快速执行单行命令
+- <Icon name="file-text" size="1em" /> 执行多行脚本
+- <Icon name="terminal" size="1em" /> 在终端中实时显示输出
+
+**适用场景**：
+- 系统信息查询
+- 简单的文件操作
+- 服务启停控制
+
+### API 集成命令
+
+<Icon name="plug" size="1em" /> 调用 BetaXShell API：
+
+- <Icon name="folder" size="1em" /> 文件传输操作
+- <Icon name="server" size="1em" /> 多主机协同
+- <Icon name="chart-line" size="1em" /> 数据收集和统计
+- <Icon name="gear" size="1em" /> 高级自动化
+
+**适用场景**：
+- 复杂的自动化流程
+- 跨主机操作
+- 数据收集和分析
+
+### 复合命令
+
+<Icon name="layers" size="1em" /> 组合多个命令：
+
+- <Icon name="git-merge" size="1em" /> 按顺序执行多个步骤
+- <Icon name="arrow-u-up-left" size="1em" /> 支持回滚操作
+- <Icon name="diagram" size="1em" /> 条件分支和循环
+
+**适用场景**：
+- 应用部署流程
+- 系统初始化
+- 复杂的运维操作
+
+## <Icon name="eye" size="1.2em" /> 查看执行结果
+
+### 实时输出
+
+<Icon name="desktop" size="1em" /> **执行窗口**
+
+- 实时显示命令输出
+- 支持滚动查看历史记录
+- 高亮错误和警告信息
+
+### 执行状态
+
+<Icon name="info" size="1em" /> **状态指示**
+
+- <Icon name="clock" size="1em" /> **执行中**：命令正在运行
+- <Icon name="checkmark-circle" size="1em" color="var(--sl-color-success)" /> **成功**：命令执行成功
+- <Icon name="x-circle" size="1em" color="var(--sl-color-danger)" /> **失败**：执行出错
+- <Icon name="warning" size="1em" color="var(--sl-color-warning)" /> **警告**：完成但有警告
+
+### 结果操作
+
+<Icon name="gear" size="1.2em" /> **可以执行的操作**
+
+- <Icon name="copy" size="1em" /> **复制输出**：复制执行结果到剪贴板
+- <Icon name="download" size="1em" /> **导出日志**：保存完整执行日志
+- <Icon name="arrow-clockwise" size="1em" /> **重新执行**：使用相同参数再次执行
+- <Icon name="share" size="1em" /> **分享结果**：分享给团队成员
+
+## <Icon name="wrench" size="1.2em" /> 管理命令
+
+### 禁用命令
+
+<Icon name="toggle-off" size="1em" /> 暂时不需要某个命令？
+
+1. 进入 **"命令管理"**
+2. 找到要禁用的命令
+3. 点击 **"禁用"** 按钮
+4. 命令将从快捷命令列表中隐藏
+
+<Icon name="info" size="1em" /> **提示**：禁用不会删除命令，可以随时重新启用。
+
+### 更新命令
+
+<Icon name="arrow-up" size="1em" /> 保持命令为最新版本：
+
+- 自动检测更新
+- 查看更新日志
+- 一键更新到最新版本
+
+### 卸载命令
+
+<Icon name="trash" size="1em" /> 彻底删除命令：
+
+1. 进入 **"命令管理"**
+2. 找到要卸载的命令
+3. 点击 **"卸载"** 按钮
+4. 确认卸载操作
+
+<Icon name="warning" size="1em" color="var(--sl-color-warning)" /> **注意**：卸载后无法恢复，需要重新从命令市场安装。
+
+## <Icon name="star" size="1.2em" /> 高级功能
+
+### 命令别名
+
+<Icon name="tag" size="1em" /> 为常用命令创建别名：
+
+1. 右键点击命令
+2. 选择 **"设置别名"**
+3. 输入简短的别名（如 `health`）
+4. 保存后可通过别名快速访问
+
+### 命令分组
+
+<Icon name="folder-tree" size="1em" /> 组织命令：
+
+- 创建自定义分组
+- 将命令添加到分组
+- 快速访问特定类别的命令
+
+### 定时执行
+
+<Icon name="calendar" size="1em" /> 安排命令定时执行：
+
+1. 选择命令
+2. 点击 **"定时执行"**
+3. 设置执行时间和频率
+4. 命令将按计划自动执行
+
+<Icon name="lightbulb" size="1em" /> **适用场景**：
+- 定期健康检查
+- 自动备份任务
+- 定期日志清理
+
+### 执行历史
+
+<Icon name="clock-counter-clockwise" size="1em" /> 查看历史记录：
+
+- 查看所有命令执行历史
+- 筛选特定主机或命令
+- 重新执行历史命令
+
+## <Icon name="lightbulb" size="1.2em" /> 使用技巧
+
+### 提示 1：善用搜索
+
+<Icon name="magnifying-glass" size="1em" /> 在命令列表中使用搜索功能：
+
+- 按名称搜索
+- 按标签筛选
+- 按使用频率排序
+
+### 提示 2：收藏常用命令
+
+<Icon name="star" size="1em" /> 标记常用命令：
+
+- 点击命令旁的星标
+- 收藏的命令会优先显示
+- 快速访问最常用的功能
+
+### 提示 3：查看命令源码
+
+<Icon name="code" size="1em" /> 了解命令工作原理：
+
+- 点击 **"查看源码"**
+- 学习命令实现方式
+- 根据需要自定义修改
+
+### 提示 4：分享给团队
+
+<Icon name="users" size="1em" /> 推荐给团队成员：
+
+- 点击 **"分享"** 按钮
+- 生成分享链接
+- 发送给团队成员
+
+## <Icon name="question-circle" size="1.2em" /> 常见问题
+
+### 命令执行失败怎么办？
+
+1. <Icon name="eye" size="1em" /> 查看错误信息
+2. <Icon name="file-text" size="1em" /> 检查命令日志
+3. <Icon name="book" size="1em" /> 阅读命令文档
+4. <Icon name="bug" size="1em" /> 向命令作者反馈
+
+### 如何优化命令执行速度？
+
+- <Icon name="wifi" size="1em" /> 确保网络连接稳定
+- <Icon name="server" size="1em" /> 选择性能更好的主机执行
+- <Icon name="sliders" size="1em" /> 调整命令参数（如并发数）
+
+## 相关链接
+
+- <Icon name="store" size="1em" /> [命令市场](/community/overview) - 浏览和安装更多命令
+- <Icon name="heart" size="1em" /> [贡献命令](/community/contributing) - 分享你的命令
+- <Icon name="question-circle" size="1em" /> [FAQ](/faq) - 查看常见问题

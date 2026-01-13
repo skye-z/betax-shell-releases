@@ -1,0 +1,420 @@
+---
+title: 文件传输
+description: 学习使用 BetaXShell 的 SFTP 文件传输功能
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+BetaXShell 内置强大的 SFTP 文件传输功能，让你可以轻松管理远程服务器上的文件，就像操作本地文件一样简单。
+
+## <Icon name="folder" size="1.2em" /> SFTP 文件浏览器
+
+### 打开文件浏览器
+
+<Icon name="sign-in-alt" size="1.2em" /> 连接到主机后，有多种方式打开 SFTP 文件浏览器：
+
+**方式一：工具栏按钮**
+- 点击工具栏的 **"文件"** 图标
+- 快捷键：`Ctrl + F`
+
+**方式二：右键菜单**
+- 右键点击已连接的主机
+- 选择 **"打开文件浏览器"**
+
+**方式三：分屏模式**
+- 点击终端标签页的 **"分屏"** 图标
+- 选择 **"文件浏览"**
+- 文件浏览器将显示在分屏中
+
+> TODO: 添加 SFTP 文件浏览器界面截图
+
+### 界面布局
+
+SFTP 文件浏览器包含以下主要区域：
+
+- <Icon name="list" size="1em" /> **导航栏**：显示当前路径和面包屑导航
+- <Icon name="toolbar" size="1em" /> **工具栏**：文件操作快捷按钮
+- <Icon name="table" size="1em" /> **文件列表**：显示当前目录的文件和文件夹
+- <Icon name="info" size="1em" /> **状态栏**：显示传输进度和统计信息
+- <Icon name="sidebar" size="1em" /> **侧边栏**：显示本地和远程文件树（可选）
+
+## <Icon name="upload" size="1.2em" /> 上传文件
+
+### 拖拽上传
+
+<Icon name="hand-pointing" size="1.2em" /> 最直观的上传方式：
+
+1. 打开本地文件管理器（Windows 资源管理器、macOS Finder 等）
+2. 选择要上传的文件或文件夹
+3. 拖拽到 SFTP 文件浏览器
+4. 松开鼠标，开始上传
+
+> TODO: 添加拖拽上传操作截图
+
+支持同时上传多个文件，每个文件独立显示传输进度。
+
+### 上传按钮
+
+<Icon name="plus" size="1.2em" /> 使用上传按钮：
+
+1. 点击工具栏的 **"上传"** 按钮
+2. 在文件选择对话框中选择文件
+3. 点击 **"确定"** 开始上传
+
+### 右键上传
+
+<Icon name="mouse-right-click" size="1.2em" /> 右键菜单上传：
+
+1. 在文件列表空白处右键
+2. 选择 **"上传文件"**
+3. 选择要上传的文件
+
+### 上传文件夹
+
+BetaXShell 支持整个文件夹的上传：
+
+- <Icon name="folder-tree" size="1em" /> 自动保持目录结构
+- <Icon name="layers" size="1em" /> 支持批量上传
+- <Icon name="sync" size="1em" /> 可选择覆盖或跳过已存在的文件
+
+## <Icon name="download" size="1.2em" /> 下载文件
+
+### 下载单个文件
+
+<Icon name="arrow-down" size="1.2em" /> 下载远程文件到本地：
+
+1. 在文件列表中选择文件
+2. 点击 **"下载"** 按钮
+3. 选择本地保存位置
+4. 开始下载
+
+### 批量下载
+
+<Icon name="squares-four" size="1.2em" /> 同时下载多个文件：
+
+1. 按住 `Ctrl` 选择多个文件
+2. 右键点击选中的文件
+3. 选择 **"下载"**
+4. 选择保存位置（所有文件保存到同一目录）
+
+### 下载文件夹
+
+<Icon name="folder-download" size="1.2em" /> 下载整个文件夹：
+
+1. 右键点击文件夹
+2. 选择 **"下载文件夹"**
+3. 选择本地保存位置
+4. 文件夹及其内容将完整下载
+
+### 拖拽下载
+
+<Icon name="hand-pointing" size="1.2em" /> 直接拖拽到本地：
+
+1. 在 SFTP 浏览器中选择文件或文件夹
+2. 拖拽到本地文件管理器
+3. 松开鼠标开始下载
+
+> TODO: 添加拖拽下载操作截图
+
+## <Icon name="exchange" size="1.2em" /> 传输管理
+
+### 传输队列
+
+<Icon name="list" size="1.2em" /> 查看和管理传输任务：
+
+1. 点击工具栏的 **"传输"** 按钮
+2. 打开传输队列窗口
+3. 查看所有正在进行和等待的传输任务
+
+> TODO: 添加传输队列界面截图
+
+### 传输状态
+
+每个传输任务显示以下信息：
+
+- <Icon name="file" size="1em" /> **文件名**：正在传输的文件名称
+- <Icon name="arrow-left-right" size="1em" /> **方向**：上传或下载
+- <Icon name="gauge" size="1em" /> **进度**：传输进度百分比
+- <Icon name="speedometer" size="1em" /> **速度**：当前传输速度
+- <Icon name="clock" size="1em" /> **剩余时间**：预计完成时间
+- <Icon name="resize" size="1em" /> **文件大小**：已传输/总大小
+
+### 传输操作
+
+- <Icon name="pause" size="1em" /> **暂停**：暂停当前传输
+- <Icon name="play" size="1em" /> **继续**：恢复暂停的传输
+- <Icon name="x-circle" size="1em" /> **取消**：取消传输任务
+- <Icon name="trash" size="1em" /> **清除**：从队列中移除已完成的任务
+
+## <Icon name="cog" size="1.2em" /> 传输设置
+
+### 并发连接
+
+<Icon name="layers" size="1.2em" /> 调整同时传输的文件数量：
+
+1. 进入 **设置** > **传输** > **并发**
+2. 设置 **最大并发数**：
+   - 默认：3 个
+   - 范围：1 - 10 个
+3. 根据网络带宽调整
+
+> TODO: 添加传输设置界面截图
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **提示**：高带宽网络可以增加并发数，提高传输效率。
+
+### 传输速度限制
+
+<Icon name="gauge" size="1.2em" /> 限制传输速度避免占满带宽：
+
+1. 进入 **设置** > **传输** > **速度限制**
+2. 启用 **"限制上传速度"**
+3. 设置最大速度（如 1MB/s）
+4. 可分别限制上传和下载速度
+
+### 断点续传
+
+<Icon name="arrow-u-up-left" size="1.2em" /> 支持传输中断后继续：
+
+- 自动检测已传输的部分
+- 从中断处继续传输
+- 节省时间和带宽
+
+<Icon name="warning" size="1em" color="var(--sl-color-warning)" /> **注意**：断点续传需要服务器支持。
+
+### 压缩传输
+
+<Icon name="file-zip" size="1.2em" /> 启用压缩加快传输：
+
+1. 进入 **设置** > **传输** > **压缩**
+2. 启用 **"压缩传输"**
+3. 选择压缩级别：
+   - **快速**：压缩率低，速度快
+   - **标准**：平衡压缩率和速度
+   - **最大**：压缩率高，速度慢
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **提示**：适合传输文本文件，对已压缩的文件（如 .zip、.gz）效果不明显。
+
+## <Icon name="edit" size="1.2em" /> 文件操作
+
+### 基本操作
+
+<Icon name="folder" size="1.2em" /> **新建文件夹**
+
+1. 点击工具栏 **"新建文件夹"** 按钮
+2. 输入文件夹名称
+3. 按 Enter 创建
+
+<Icon name="pencil" size="1.2em" /> **重命名**
+
+1. 右键点击文件或文件夹
+2. 选择 **"重命名"**
+3. 输入新名称
+4. 按 Enter 确认
+
+<Icon name="trash" size="1.2em" /> **删除**
+
+1. 选择要删除的文件或文件夹
+2. 点击 **"删除"** 按钮
+3. 确认删除操作
+
+<Icon name="warning" size="1em" color="var(--sl-color-warning)" /> **警告**：删除操作不可撤销，请谨慎操作！
+
+### 文件属性
+
+<Icon name="info" size="1.2em" /> 查看文件详细信息：
+
+1. 右键点击文件
+2. 选择 **"属性"**
+3. 查看文件信息：
+   - <Icon name="resize" size="1em" /> 文件大小
+   - <Icon name="calendar" size="1em" /> 修改时间
+   - <Icon name="shield" size="1em" /> 权限
+   - <Icon name="user" size="1em" /> 所有者
+   - <Icon name="group" size="1em" /> 所属组
+
+> TODO: 添加文件属性对话框截图
+
+### 权限修改
+
+<Icon name="lock" size="1.2em" /> 修改文件权限：
+
+1. 右键点击文件或文件夹
+2. 选择 **"权限"**
+3. 设置权限：
+   - <Icon name="user" size="1em" /> **所有者**：读、写、执行
+   - <Icon name="group" size="1em" /> **组**：读、写、执行
+   - <Icon name="users" size="1em" /> **其他**：读、写、执行
+4. 或直接输入权限码（如 755、644）
+
+## <Icon name="search" size="1.2em" /> 文件搜索
+
+### 快速搜索
+
+<Icon name="magnifying-glass" size="1.2em" /> 在当前目录中搜索文件：
+
+1. 点击搜索框
+2. 输入文件名或部分名称
+3. 实时显示匹配结果
+
+### 高级搜索
+
+<Icon name="filter" size="1.2em" /> 使用筛选条件：
+
+- <Icon name="font" size="1em" /> **文件类型**：按扩展名筛选
+- <Icon name="resize" size="1em" /> **文件大小**：按大小范围筛选
+- <Icon name="calendar" size="1em" /> **修改时间**：按时间筛选
+- <Icon name="user" size="1em" /> **所有者**：按文件所有者筛选
+
+## <Icon name="terminal" size="1.2em" /> 高级功能
+
+### 远程编辑
+
+<Icon name="pencil" size="1.2em" /> 使用本地编辑器编辑远程文件：
+
+1. 右键点击文件
+2. 选择 **"打开方式"**
+3. 选择编辑器
+4. 编辑完成后自动上传
+
+> TODO: 添加远程编辑功能演示截图
+
+支持以下编辑器：
+- VS Code
+- Sublime Text
+- Notepad++
+- Vim / Emacs（终端编辑器）
+
+### 同步文件夹
+
+<Icon name="sync" size="1.2em" /> 保持本地和远程文件夹同步：
+
+1. 右键点击文件夹
+2. 选择 **"同步"**
+3. 设置同步选项：
+   - <Icon name="arrow-left-right" size="1em" /> **同步方向**：双向、上传、下载
+   - <Icon name="clock" size="1em" /> **同步时间**：手动、定时
+   - <Icon name="filter" size="1em" /> **文件过滤**：包含/排除特定文件
+4. 开始同步
+
+### 文件比较
+
+<Icon name="not-equal" size="1.2em" /> 比较本地和远程文件：
+
+1. 选择本地和远程文件
+2. 右键 > **"比较"**
+3. 查看差异
+4. 合并更改
+
+需要安装文件比较工具（如 Beyond Compare、WinMerge）。
+
+## <Icon name="code" size="1.2em" /> 命令行操作
+
+### SFTP 命令
+
+在终端中可以使用 SFTP 命令行：
+
+```bash
+# 连接到 SFTP
+sftp user@host
+
+# 常用命令
+pwd                # 查看远程当前目录
+lpwd               # 查看本地当前目录
+ls                 # 列出远程文件
+lls                # 列出本地文件
+cd remote_dir      # 切换远程目录
+lcd local_dir      # 切换本地目录
+get remote_file    # 下载文件
+put local_file     # 上传文件
+mget *.txt         # 批量下载
+mput *.txt         # 批量上传
+mkdir dir_name     # 创建目录
+rm file_name       # 删除文件
+rmdir dir_name     # 删除目录
+exit               # 退出 SFTP
+```
+
+## <Icon name="lightbulb" size="1.2em" /> 使用技巧
+
+### 提示 1：使用书签
+
+<Icon name="bookmark" size="1em" /> 为常用路径添加书签：
+
+1. 导航到常用目录
+2. 点击工具栏 **"添加书签"**
+3. 输入书签名称
+4. 快速访问常用路径
+
+### 提示 2：双栏视图
+
+<Icon name="columns" size="1em" /> 同时查看本地和远程文件：
+
+1. 点击工具栏 **"双栏视图"**
+2. 左侧显示本地文件
+3. 右侧显示远程文件
+4. 方便拖拽传输
+
+> TODO: 添加双栏视图截图
+
+### 提示 3：传输历史
+
+<Icon name="history" size="1em" /> 查看传输历史记录：
+
+1. 进入 **设置** > **传输** > **历史**
+2. 查看所有传输记录
+3. 可以重新传输历史文件
+
+### 提示 4：预设路径
+
+<Icon name="map" size="1em" /> 设置默认下载目录：
+
+1. 进入 **设置** > **传输** > **默认路径**
+2. 设置 **默认下载目录**
+3. 下载时自动选择此目录
+
+## <Icon name="warning" size="1.2em" /> 常见问题
+
+### 传输速度慢
+
+**问题**：文件传输速度很慢
+
+**解决方案**：
+1. <Icon name="wifi" size="1em" /> 检查网络连接速度
+2. <Icon name="layers" size="1em" /> 增加并发连接数
+3. <Icon name="file-zip" size="1em" /> 启用压缩传输
+4. <Icon name="shield" size="1em" /> 检查防火墙设置
+
+### 连接中断
+
+**问题**：传输过程中连接中断
+
+**解决方案**：
+1. <Icon name="arrow-u-up-left" size="1em" /> 使用断点续传功能
+2. <Icon name="wifi" size="1em" /> 检查网络稳定性
+3. <Icon name="clock" size="1em" /> 增加 SSH 超时时间
+4. <Icon name="sync" size="1em" /> 使用更可靠的连接
+
+### 权限不足
+
+**问题**：无法上传或删除文件
+
+**解决方案**：
+1. <Icon name="user" size="1em" /> 确认用户权限
+2. <Icon name="key" size="1em" /> 使用 root 或 sudo 权限
+3. <Icon name="lock" size="1em" /> 检查文件和目录权限
+4. <Icon name="folder" size="1em" /> 确认目标目录可写
+
+### 文件名乱码
+
+**问题**：文件名显示为乱码
+
+**解决方案**：
+1. <Icon name="text" size="1em" /> 检查字符编码设置
+2. <Icon name="settings" size="1em" /> 在主机配置中设置正确的编码
+3. <Icon name="font" size="1em" /> 尽量避免使用特殊字符
+
+## 相关链接
+
+- <Icon name="terminal" size="1em" /> [终端使用](/user-guide/terminal) - 学习终端操作
+- <Icon name="key" size="1em" /> [密钥管理](/user-guide/keys) - 配置密钥认证
+- <Icon name="wrench" size="1.2em" /> [故障排除](/troubleshooting) - 解决传输问题

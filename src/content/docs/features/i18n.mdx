@@ -1,0 +1,274 @@
+---
+title: 国际化
+description: BetaXShell 多语言支持介绍
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+BetaXShell 原生支持多种语言，让全球用户都能用母语使用应用。
+
+## <Icon name="globe" size="1.2em" /> 支持的语言
+
+### 界面语言
+
+<Icon name="translate" size="1.2em" /> BetaXShell 界面支持：
+
+- <Icon name="flag" size="1.2em" /> **简体中文**（zh-CN）- 默认语言
+- <Icon name="flag" size="1.2em" /> **English**（en-US）- 英语
+
+> TODO: 添加多语言界面对比截图
+
+### 终端语言
+
+<Icon name="terminal" size="1.2em" /> 终端支持所有 Unicode 语言：
+
+- 中文（简体/繁体）
+- 日语
+- 韩语
+- 阿拉伯语
+- 希伯来语
+- 俄语
+- 以及所有支持 Unicode 的语言
+
+## <Icon name="settings" size="1.2em" /> 切换界面语言
+
+### 修改语言设置
+
+<Icon name="gear" size="1.2em" /> 更改界面语言：
+
+1. 打开 **设置**
+2. 在 **通用设置** 中找到 **"界面语言"**
+3. 从下拉菜单选择语言
+4. 点击 **"应用"** 或立即生效
+
+> TODO: 添加语言设置界面截图
+
+### 重启应用
+
+<Icon name="arrow-clockwise" size="1.2em" /> 某些更改需要重启：
+
+- 大部分界面立即更新
+- 部分对话框需要重启后生效
+- 提示重启以完成语言切换
+
+## <Icon name="text" size="1.2em" /> 字体支持
+
+### 多语言字体
+
+<Icon name="font" size="1.2em" /> BetaXShell 自动选择合适的字体：
+
+- **中文**：使用中文字体显示
+- **英文**：使用等宽字体显示
+- **混合**：自动回退到系统字体
+
+### 推荐字体
+
+<Icon name="star" size="1.2em" /> 各语言推荐字体：
+
+#### 中文字体
+
+- **微软雅黑**（Windows）
+- **苹方**（macOS）
+- **思源黑体**（跨平台）
+- **文泉驿微米黑**（Linux）
+
+#### 英文字体
+
+- **Consolas**（Windows）
+- **Monaco**（macOS）
+- **Ubuntu Mono**（Linux）
+- **Fira Code**（跨平台）
+
+#### 编程字体
+
+支持中文和英文的编程字体：
+
+- **JetBrains Mono**
+- **Source Han Code JP**
+- **Noto Sans Mono CJK**
+
+## <Icon name="terminal" size="1.2em" /> 终端编码
+
+### 字符编码设置
+
+<Icon name="text-height" size="1.2em" /> 配置终端字符编码：
+
+1. 编辑主机配置
+2. 在 **高级设置** 中找到 **"字符编码"**
+3. 选择编码：
+   - **UTF-8**（推荐，默认）
+   - **GBK**
+   - **Big5**
+   - **ISO-8859-1**
+4. 保存并重新连接
+
+> TODO: 添加字符编码设置截图
+
+### UTF-8 支持
+
+<Icon name="check-circle" size="1.2em" color="var(--sl-color-success)" /> UTF-8 优势：
+
+- <Icon name="globe" size="1.2em" /> 支持所有 Unicode 字符
+- <Icon name="flag" size="1.2em" /> 显示任意语言文本
+- <Icon name="emoji" size="1.2em" /> 支持 Emoji 表情
+- <Icon name="peace" size="1.2em" /> 国际标准，广泛使用
+
+## <Icon name="keyboard" size="1.2em" /> 输入法支持
+
+### 终端输入法
+
+<Icon name="keyboard" size="1.2em" /> BetaXShell 完全支持系统输入法：
+
+- <Icon name="check" size="1.2em" /> **中文输入法**：拼音、五笔等
+- <Icon name="check" size="1.2em" /> **日文输入法**：IME
+- <Icon name="check" size="1.2em" /> **韩文输入法**：韩文 IME
+- <Icon name="check" size="1.2em" /> **其他输入法**：所有系统支持的输入法
+
+### 输入法切换
+
+<Icon name="arrows-left-right" size="1.2em" /> 在终端中切换输入法：
+
+- 使用系统快捷键切换
+- Windows：`Ctrl + Space` 或 `Win + Space`
+- macOS：`Control + Space` 或 `Caps Lock`
+- Linux：`Ctrl + Space` 或 `Super + Space`
+
+## <Icon name="code" size="1.2em" /> 多语言脚本
+
+### 运行多语言脚本
+
+<Icon name="file-code" size="1.2em" /> 终端可以执行包含多语言的脚本：
+
+```python
+# 中文注释和输出
+# 打印欢迎信息
+print("欢迎使用 BetaXShell！")
+print("Japanese: 日本語")
+print("Korean: 한국어")
+```
+
+```bash
+# 中文脚本
+echo "开始处理数据..."
+# 处理逻辑
+echo "处理完成！"
+```
+
+### 文件名支持
+
+<Icon name="folder" size="1.2em" /> SFTP 支持多语言文件名：
+
+- 中文文件名：`数据文件.csv`
+- 日文文件名：`データ.txt`
+- 韩文文件名：`데이터.xlsx`
+- 混合文件名：`Report_2024_报告.docx`
+
+## <Icon name="users" size="1.2em" /> 团队协作
+
+### 多语言团队
+
+<Icon name="people-group" size="1.2em" /> 适配国际化团队：
+
+- **中文团队**：使用简体中文界面
+- **国际团队**：使用英语界面
+- **混合团队**：各成员选择自己的语言
+
+### 配置共享
+
+<Icon name="share-nodes" size="1.2em" /> 语言设置不影响配置共享：
+
+- 主机配置跨语言共享
+- 密钥管理通用
+- 团队成员可以使用不同语言
+
+## <Icon name="hand" size="1.2em" /> 贡献翻译
+
+### 报告翻译问题
+
+<Icon name="bug" size="1.2em" /> 发现翻译问题？
+
+1. 在 GitHub 上提交 Issue
+2. 说明：
+   - 哪个界面
+   - 当前显示的文本
+   - 正确的翻译
+3. 附上截图（如可能）
+
+### 贡献新语言
+
+<Icon name="heart" size="1.2em" /> 想要添加新语言？
+
+1. Fork BetaXShell 仓库
+2. 添加语言翻译文件
+3. 提交 Pull Request
+4. 等待审核和合并
+
+详见：[贡献指南](/community/contributing)
+
+## <Icon name="lightbulb" size="1.2em" /> 使用技巧
+
+### 技巧 1：使用 UTF-8
+
+<Icon name="check-circle" size="1.2em" color="var(--sl-color-success)" /> 始终使用 UTF-8 编码：
+
+- 支持所有语言字符
+- 避免乱码问题
+- 现代系统标准
+
+### 技巧 2：选择合适字体
+
+<Icon name="font" size="1.2em" /> 为常用语言选择专用字体：
+
+- 中英文混合：选择支持中文的等宽字体
+- 仅英文：选择纯英文等宽字体更美观
+- 代码显示：使用支持连字的编程字体
+
+### 技巧 3：配置终端编码
+
+<Icon name="cog" size="1.2em" /> 确保服务器端也使用 UTF-8：
+
+```bash
+# 在服务器上设置
+export LANG=zh_CN.UTF-8
+export LC_ALL=zh_CN.UTF-8
+
+# 或添加到 ~/.bashrc
+echo 'export LANG=zh_CN.UTF-8' >> ~/.bashrc
+```
+
+## <Icon name="bug" size="1.2em" /> 常见问题
+
+### 界面显示乱码
+
+**问题**：界面文字显示为方框或乱码
+
+**解决方案**：
+1. <Icon name="font" size="1.2em" /> 安装对应的语言字体
+2. <Icon name="settings" size="1.2em" /> 在设置中更换字体
+3. <Icon name="arrow-clockwise" size="1.2em" /> 重启应用
+
+### 终端中文乱码
+
+**问题**：终端中中文显示为乱码
+
+**解决方案**：
+1. <Icon name="text" size="1.2em" /> 检查服务器端编码设置
+2. <Icon name="server" size="1.2em" /> 确保服务器支持 UTF-8
+3. <Icon name="cog" size="1.2em" /> 在主机配置中设置正确的字符编码
+4. <Icon name="font" size="1.2em" /> 安装中文字体
+
+### 文件名乱码
+
+**问题**：SFTP 中文件名显示乱码
+
+**解决方案**：
+1. <Icon name="text" size="1.2em" /> 检查服务器文件系统编码
+2. <Icon name="settings" size="1.2em" /> 调整字符编码设置
+3. <Icon name="terminal" size="1.2em" /> 使用 `ls` 命令查看文件名是否正常
+4. <Icon name="rename" size="1.2em" /> 重命名文件为英文名避免问题
+
+## 相关链接
+
+- <Icon name="cog" size="1.2em" /> [设置说明](/user-guide/settings) - 界面设置
+- <Icon name="terminal" size="1.2em" /> [终端使用](/user-guide/terminal) - 终端编码
+- <Icon name="heart" size="1.2em" /> [贡献命令](/community/contributing) - 贡献翻译

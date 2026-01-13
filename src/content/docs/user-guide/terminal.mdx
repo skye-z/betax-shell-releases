@@ -1,0 +1,389 @@
+---
+title: 终端使用
+description: 学习如何高效使用 BetaXShell 的终端功能
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+BetaXShell 内置强大的 xterm.js 终端模拟器，提供完整的 SSH 终端体验。本指南将帮助你掌握终端的各项功能。
+
+## <Icon name="terminal" size="1.2em" /> 终端界面概览
+
+### 主界面布局
+
+> TODO: 添加终端界面截图，标注主要组件（标签页、工具栏、终端区域）
+
+BetaXShell 终端由以下主要部分组成：
+
+- <Icon name="list" size="1em" /> **标签页栏**：显示和管理多个终端会话
+- <Icon name="toolbar" size="1em" /> **工具栏**：快速访问常用功能
+- <Icon name="desktop" size="1em" /> **终端区域**：显示和执行命令
+- <Icon name="scroll" size="1em" /> **滚动条**：浏览历史输出
+
+### 标签页管理
+
+<Icon name="plus" size="1.2em" /> **新建标签页**
+
+- 点击 **"+"** 按钮创建新标签页
+- 快捷键：`Ctrl + T`
+- 自动打开新的终端会话
+
+<Icon name="x-circle" size="1.2em" /> **关闭标签页**
+
+- 点击标签页的 **"×"** 按钮
+- 快捷键：`Ctrl + W`
+- 双击标签页也可以关闭
+
+<Icon name="arrows-left-right" size="1.2em" /> **切换标签页**
+
+- 点击标签页名称切换
+- 快捷键：`Ctrl + Tab`（下一个）
+- 快捷键：`Ctrl + Shift + Tab`（上一个）
+
+## <Icon name="mouse-right-click" size="1.2em" /> 右键菜单
+
+右键点击终端区域可以访问以下功能：
+
+> TODO: 添加右键菜单截图
+
+### 常用操作
+
+- <Icon name="copy" size="1em" /> **复制**：复制选中的文本到剪贴板
+- <Icon name="clipboard" size="1em" /> **粘贴**：从剪贴板粘贴文本
+- <Icon name="text-size" size="1em" /> **字体大小**：调整终端字体
+- <Icon name="palette" size="1em" /> **颜色方案**：切换终端配色
+- <Icon name="find" size="1em" /> **查找**：在终端输出中搜索文本
+- <Icon name="eraser" size="1em" /> **清除**：清除终端屏幕或历史
+
+### 高级功能
+
+- <Icon name="layout-columns" size="1em" /> **分屏**：水平或垂直分屏
+- <Icon name="upload" size="1em" /> **上传文件**：打开 SFTP 上传对话框
+- <Icon name="download" size="1em" /> **下载文件**：打开 SFTP 下载对话框
+- <Icon name="settings" size="1em" /> **终端设置**：快速调整终端配置
+
+## <Icon name="keyboard" size="1.2em" /> 快捷键大全
+
+### 通用快捷键
+
+| 快捷键 | 功能 |
+|--------|------|
+| `Ctrl + T` | 新建标签页 |
+| `Ctrl + W` | 关闭当前标签页 |
+| `Ctrl + Tab` | 切换到下一个标签页 |
+| `Ctrl + Shift + Tab` | 切换到上一个标签页 |
+| `Ctrl + F` | 在终端中查找 |
+| `F11` | 全屏模式 |
+
+### 文本操作
+
+| 快捷键 | 功能 |
+|--------|------|
+| `Ctrl + Shift + C` | 复制选中文本 |
+| `Ctrl + Shift + V` | 粘贴文本 |
+| `Ctrl + Insert` | 复制（备用） |
+| `Shift + Insert` | 粘贴（备用） |
+
+### 字体调整
+
+| 快捷键 | 功能 |
+|--------|------|
+| `Ctrl + Plus` | 增大字体 |
+| `Ctrl + Minus` | 减小字体 |
+| `Ctrl + 0` | 重置字体大小 |
+
+### 终端控制
+
+| 快捷键 | 功能 |
+|--------|------|
+| `Ctrl + C` | 发送中断信号（SIGINT） |
+| `Ctrl + D` | 发送 EOF 信号 |
+| `Ctrl + Z` | 挂起当前进程 |
+| `Ctrl + L` | 清屏（等同于 clear 命令） |
+
+## <Icon name="sliders" size="1.2em" /> 终端外观定制
+
+### 字体设置
+
+<Icon name="text" size="1em" /> **字体选择**
+
+1. 进入 **设置** > **终端** > **字体**
+2. 从字体列表中选择喜欢的字体
+3. 推荐字体：
+   - <Icon name="checkmark" size="1em" /> **等宽字体**：Consolas、Monaco、Menlo
+   - <Icon name="checkmark" size="1em" /> **编程字体**：Fira Code、JetBrains Mono
+   - <Icon name="checkmark" size="1em" /> **经典字体**：Courier New
+
+> TODO: 添加字体设置界面截图
+
+<Icon name="text-size" size="1em" /> **字体大小**
+
+- 默认大小：14px
+- 调整范围：10px - 32px
+- 支持自定义大小
+
+### 颜色方案
+
+<Icon name="palette" size="1em" /> BetaXShell 提供多种内置配色方案：
+
+#### 浅色主题
+
+- <Icon name="sun" size="1em" /> **Light**：经典浅色主题
+- <Icon name="sun" size="1em" /> **Solarized Light**：护眼浅色主题
+
+#### 深色主题
+
+- <Icon name="moon" size="1em" /> **Dark**：经典深色主题
+- <Icon name="moon" size="1em" /> **Solarized Dark**：护眼深色主题
+- <Icon name="moon" size="1em" /> **Monokai**：流行编程主题
+- <Icon name="moon" size="1em" /> **Dracula**：优雅深色主题
+- <Icon name="moon" size="1em" /> **Nord**：清爽北欧主题
+
+> TODO: 添加不同颜色方案对比截图
+
+<Icon name="paint-brush" size="1em" /> **自定义颜色**
+
+1. 进入 **设置** > **终端** > **颜色**
+2. 点击 **"自定义方案"**
+3. 调整以下颜色：
+   - 前景色
+   - 背景色
+   - 光标颜色
+   - ANSI 16色（基本色和亮色）
+
+### 光标样式
+
+<Icon name="cursor" size="1em" /> 支持多种光标样式：
+
+- **Block**：块状光标 ▮
+- **Underline**：下划线光标 _
+- **Bar**：竖线光标 |
+
+选择最符合你习惯的光标样式。
+
+## <Icon name="layout-columns" size="1.2em" /> 分屏功能
+
+### 水平分屏
+
+<Icon name="arrows-h" size="1.2em" /> 将终端分为左右两部分：
+
+1. 点击标签页的 **"分屏"** 图标
+2. 选择 **"水平分屏"**
+3. 两个分屏独立操作，互不干扰
+
+> TODO: 添加水平分屏截图
+
+### 垂直分屏
+
+<Icon name="arrows-v" size="1.2em" /> 将终端分为上下两部分：
+
+1. 点击标签页的 **"分屏"** 图标
+2. 选择 **"垂直分屏"**
+3. 适合同时查看命令和输出
+
+> TODO: 添加垂直分屏截图
+
+### 分屏操作
+
+- <Icon name="arrows-left-right" size="1em" /> **拖拽边界**：调整分屏大小
+- <Icon name="x-circle" size="1em" /> **关闭分屏**：点击分屏的关闭按钮
+- <Icon name="swap" size="1em" /> **交换分屏**：交换两个分屏的位置
+
+## <Icon name="search" size="1.2em" /> 查找功能
+
+<Icon name="magnifying-glass" size="1.2em" /> 在终端中快速查找文本：
+
+1. 按 `Ctrl + F` 打开查找框
+2. 输入要查找的文本
+3. 使用以下功能：
+   - <Icon name="arrow-up" size="1em" /> **上一个**：跳转到上一个匹配项
+   - <Icon name="arrow-down" size="1em" /> **下一个**：跳转到下一个匹配项
+   - <Icon name="font" size="1em" /> **区分大小写**：启用大小写敏感
+   - <Icon name="regex" size="1em" /> **正则表达式**：使用正则模式
+   - <Icon name="case" size="1em" /> **全字匹配**：只匹配完整单词
+
+> TODO: 添加查找功能截图
+
+## <Icon name="scroll" size="1.2em" /> 滚动和缓冲区
+
+### 滚动操作
+
+- <Icon name="arrow-up" size="1em" /> **向上滚动**：查看历史输出
+- <Icon name="arrow-down" size="1em" /> **向下滚动**：返回最新输出
+- <Icon name="home" size="1em" /> **滚动到顶部**：查看最早的输出
+- <Icon name="end" size="1em" /> **滚动到底部**：返回当前行
+
+### 缓冲区设置
+
+<Icon name="database" size="1.2em" /> 调整终端缓冲区大小：
+
+1. 进入 **设置** > **终端** > **缓冲区**
+2. 设置 **滚动行数**：
+   - 默认：1000 行
+   - 最小：100 行
+   - 最大：10000 行
+3. 设置 **启用滚动备份**
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **提示**：较大的缓冲区会占用更多内存，根据需要调整。
+
+## <Icon name="bell" size="1.2em" /> 终端铃声和通知
+
+### 视觉铃声
+
+<Icon name="eye" size="1em" /> 当终端发送响铃字符（`\a`）时：
+
+- 终端窗口闪烁
+- 标签页高亮显示
+- 不会发出实际声音
+
+### 通知设置
+
+<Icon name="gear" size="1.2em" /> 配置终端通知：
+
+1. 进入 **设置** > **终端** > **通知**
+2. 启用以下选项：
+   - <Icon name="bell" size="1em" /> **长时间命令完成时通知**：命令执行超过 30 秒时显示通知
+   - <Icon name="bell" size="1em" /> **后台任务完成时通知**：后台任务完成时提醒
+   - <Icon name="bell" size="1em" /> **终端响铃时通知**：收到响铃字符时通知
+
+## <Icon name="text" size="1.2em" /> 文本编码
+
+### 字符编码支持
+
+BetaXShell 支持多种字符编码：
+
+- <Icon name="checkmark" size="1em" /> **UTF-8**（推荐）：默认编码，支持所有 Unicode 字符
+- <Icon name="checkmark" size="1em" /> **GBK**：中文编码
+- <Icon name="checkmark" size="1em" /> **Big5**：繁体中文编码
+- <Icon name="checkmark" size="1em" /> **ISO-8859-1**：西欧编码
+
+### 设置编码
+
+1. 编辑主机配置
+2. 在 **高级设置** 中选择 **字符编码**
+3. 保存后重新连接
+
+## <Icon name="magic-wand" size="1.2em" /> 高级功能
+
+### 智能选择
+
+<Icon name="cursor" size="1em" /> 双击自动选择：
+
+- **URL**：自动识别并选中网址
+- **路径**：自动选中文件路径
+- **单词**：选中完整单词
+- **引号内容**：选中引号内的文本
+
+### 快速命令
+
+<Icon name="lightning" size="1em" /> 右键菜单提供快速命令：
+
+- **打开网址**：右键点击 URL > 打开浏览器
+- **复制路径**：右键点击路径 > 复制完整路径
+- **搜索选中**：选中文本 > 右键 > 在线搜索
+
+### 终端复用
+
+<Icon name="layers" size="1em" /> 在同一终端中运行多个命令：
+
+- 使用 **screen** 或 **tmux**
+- 支持多个会话窗口
+- 会话持久化
+
+## <Icon name="code" size="1.2em" /> 特殊字符支持
+
+### Emoji 支持
+
+<Icon name="smiley" size="1em" /> 终端完全支持 Emoji 显示：
+
+```
+echo "✅ 成功" "❌ 失败" "⚠️ 警告" "ℹ️ 信息"
+```
+
+### 控制序列
+
+支持 ANSI 转义序列：
+
+- **颜色**：`\033[31m红色文本\033[0m`
+- **粗体**：`\033[1m粗体文本\033[0m`
+- **下划线**：`\033[4m下划线文本\033[0m`
+- **光标移动**：`\033[10;20H` 移动到第 10 行第 20 列
+
+## <Icon name="lightbulb" size="1.2em" /> 使用技巧
+
+### 提示 1：使用自动补全
+
+<Icon name="tab" size="1em" /> 按 `Tab` 键自动补全：
+
+- 命令名称
+- 文件路径
+- 参数选项
+
+### 提示 2：命令历史
+
+<Icon name="history" size="1em" /> 使用上下箭头浏览历史命令：
+
+- `↑` 上一条命令
+- `↓` 下一条命令
+- `Ctrl + R` 搜索历史命令
+
+### 提示 3：多行编辑
+
+<Icon name="return" size="1em" /> 编辑多行命令：
+
+- `Ctrl + A`：移动到行首
+- `Ctrl + E`：移动到行尾
+- `Ctrl + U`：删除到行首
+- `Ctrl + K`：删除到行尾
+
+### 提示 4：快速清屏
+
+<Icon name="eraser" size="1em" /> 清除终端屏幕：
+
+- `clear` 命令
+- `Ctrl + L` 快捷键
+- 右键 > 清除屏幕
+
+## <Icon name="bug" size="1.2em" /> 常见问题
+
+### 终端显示乱码
+
+**问题**：终端显示乱码或方框
+
+**解决方案**：
+1. 检查服务器字符编码设置：`echo $LANG`
+2. 在主机配置中设置正确的字符编码
+3. 安装必要的字体：`sudo apt install fonts-noto`
+
+### 颜色显示不正常
+
+**问题**：终端颜色显示不正确
+
+**解决方案**：
+1. 检查终端颜色方案设置
+2. 确保应用程序支持彩色输出
+3. 尝试启用 **"强制颜色"** 选项
+
+### 终端响应慢
+
+**问题**：终端输入有延迟
+
+**解决方案**：
+1. 检查网络连接稳定性
+2. 减小终端缓冲区大小
+3. 禁用不必要的终端功能
+
+### 复制粘贴失败
+
+**问题**：无法复制或粘贴文本
+
+**解决方案**：
+1. 确保已选中文本
+2. 检查剪贴板访问权限
+3. 尝试使用快捷键 `Ctrl+Shift+C/V`
+
+## 相关链接
+
+- <Icon name="folder" size="1em" /> [文件传输](/user-guide/sftp) - 学习 SFTP 文件管理
+- <Icon name="key" size="1em" /> [密钥管理](/user-guide/keys) - 配置 SSH 密钥
+- <Icon name="wrench" size="1em" /> [故障排除](/troubleshooting) - 解决终端问题

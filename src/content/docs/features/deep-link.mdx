@@ -1,0 +1,339 @@
+---
+title: 深度链接
+description: 使用深度链接快速启动 SSH 连接
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+BetaXShell 支持深度链接（Deep Link），让你可以通过 URL 协议从浏览器或其他应用快速启动 SSH 连接。
+
+## <Icon name="link" size="1.2em" /> 什么是深度链接？
+
+深度链接是一种特殊的 URL 协议，允许通过点击链接直接启动应用并执行特定操作。
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **BetaXShell 协议**：`betaxshell://`
+
+### 使用场景
+
+<Icon name="star" size="1.2em" /> 深度链接的典型应用：
+
+- <Icon name="globe" size="1.2em" /> **从浏览器启动**：网页上的服务器列表点击即可连接
+- <Icon name="document" size="1.2em" /> **从文档启动**：技术文档中的服务器链接
+- <Icon name="chart-bar" size="1.2em" /> **从监控系统**：告警系统直接跳转到服务器
+- <Icon name="users" size="1.2em" /> **从协作工具**：团队分享的服务器快速访问
+- <Icon name="code" size="1.2em" /> **从脚本**：自动化脚本快速连接
+
+## <Icon name="plug" size="1.2em" /> 链接格式
+
+### 基本格式
+
+```
+betaxshell://user@host:port
+```
+
+### 参数说明
+
+- **user**（可选）：SSH 用户名
+- **host**（必需）：主机地址或域名
+- **port**（可选）：SSH 端口，默认 22
+
+### 示例链接
+
+```
+# 基本连接
+betaxshell://192.168.1.100
+
+# 指定用户
+betaxshell://root@192.168.1.100
+
+# 指定端口
+betaxshell://user@example.com:2222
+
+# 完整示例
+betaxshell://admin@server.example.com:2222
+```
+
+### 查询参数
+
+支持通过查询参数传递额外配置：
+
+```
+betaxshell://user@host?param1=value1&param2=value2
+```
+
+#### 支持的参数
+
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| `name` | 主机名称 | `?name=生产服务器` |
+| `group` | 主机分组 | `?group=生产环境` |
+| `auth` | 认证方式 | `?auth=password` 或 `?auth=key` |
+| `key` | 密钥名称 | `?key=my-key` |
+| `term` | 终端类型 | `?term=xterm-256color` |
+| `command` | 连接后执行的命令 | `?command=htop` |
+
+#### 完整示例
+
+```
+betaxshell://admin@server.example.com:2222?name=生产服务器&group=生产环境&key=deploy-key
+```
+
+## <Icon name="desktop" size="1.2em" /> 配置协议关联
+
+### Windows
+
+<Icon name="windows-logo" size="1.2em" /> Windows 通常会自动注册协议：
+
+1. 安装 BetaXShell 时自动注册 `betaxshell://` 协议
+2. 无需额外配置
+
+<Icon name="gear" size="1.2em" /> 手动注册（如需要）：
+
+1. 打开 **设置** > **应用** > **默认应用**
+2. 找到 **"按协议选择默认应用"**
+3. 搜索 `betaxshell`
+4. 选择 BetaXShell 作为默认处理程序
+
+> TODO: 添加 Windows 协议关联设置截图
+
+### macOS
+
+<Icon name="apple-logo" size="1.2em" /> macOS 协议关联：
+
+1. 首次点击 `betaxshell://` 链接时
+2. 系统提示选择应用
+3. 选择 BetaXShell
+4. 勾选 **"始终打开此类链接"**
+
+<Icon name="gear" size="1.2em" /> 修改关联：
+
+1. 打开 **访达**，找到任意 `.betaxshell` 文件
+2. 右键 > **显示简介**
+3. **打开方式** > 选择 BetaXShell
+4. 点击 **"全部更改"**
+
+### Linux
+
+<Icon name="linux-logo" size="1.2em" /> Linux 桌面环境：
+
+**GNOME/Ubuntu**：
+1. 打开 **设置** > **应用** > **默认应用**
+2. 找到 BetaXShell
+3. 确保已关联 `betaxshell` 协议
+
+**命令行检查**：
+```bash
+# 查看协议关联
+xdg-mime query default x-scheme-handler/betaxshell
+
+# 设置协议关联
+xdg-mime default betaxshell.desktop x-scheme-handler/betaxshell
+```
+
+## <Icon name="globe" size="1.2em" /> 从浏览器使用
+
+### 网页中嵌入链接
+
+<Icon name="code" size="1.2em" /> 在 HTML 中嵌入深度链接：
+
+```html
+<!-- 基本链接 -->
+<a href="betaxshell://root@192.168.1.100">连接到服务器</a>
+
+<!-- 按钮样式 -->
+<button onclick="window.location.href='betaxshell://admin@server.com:2222'">
+  连接服务器
+</button>
+
+<!-- 服务器列表 -->
+<ul>
+  <li><a href="betaxshell://admin@prod1.example.com">生产服务器 1</a></li>
+  <li><a href="betaxshell://admin@prod2.example.com">生产服务器 2</a></li>
+  <li><a href="betaxshell://admin@test.example.com">测试服务器</a></li>
+</ul>
+```
+
+### 服务器管理面板
+
+<Icon name="server" size="1.2em" /> 在服务器管理面板中：
+
+```javascript
+// 生成服务器链接
+function generateServerLink(server) {
+  const user = server.username || 'root';
+  const host = server.hostname;
+  const port = server.port || 22;
+  const name = encodeURIComponent(server.name);
+  const group = encodeURIComponent(server.group);
+
+  return `betaxshell://${user}@host}:${port}?name=${name}&group=${group}`;
+}
+
+// 示例使用
+const link = generateServerLink({
+  hostname: 'prod1.example.com',
+  username: 'admin',
+  port: 2222,
+  name: '生产服务器 1',
+  group: '生产环境'
+});
+
+// 在页面上显示
+document.getElementById('connect-btn').href = link;
+```
+
+> TODO: 添加服务器管理面板截图
+
+## <Icon name="tools" size="1.2em" /> 从其他应用使用
+
+### 从文档
+
+<Icon name="document" size="1.2em" /> Markdown 文档中：
+
+```markdown
+## 服务器列表
+
+- [生产服务器 1](betaxshell://admin@prod1.example.com)
+- [生产服务器 2](betaxshell://admin@prod2.example.com)
+- [测试服务器](betaxshell://admin@test.example.com)
+```
+
+### 从监控告警
+
+<Icon name="bell" size="1.2em" /> 告警系统集成：
+
+```javascript
+// Prometheus 告警通知
+{
+  "alert": "HighCPUUsage",
+  "server": "prod1.example.com",
+  "action": `betaxshell://admin@prod1.example.com?command=htop`
+}
+
+// 发送到通知系统
+sendNotification({
+  title: "CPU 使用率过高",
+  message: "点击连接到服务器查看",
+  link: "betaxshell://admin@prod1.example.com?command=htop"
+});
+```
+
+### 从命令行
+
+<Icon name="terminal" size="1.2em" /> 命令行中打开链接：
+
+**Windows**：
+```cmd
+start betaxshell://root@192.168.1.100
+```
+
+**macOS / Linux**：
+```bash
+open betaxshell://root@192.168.1.100
+# 或
+xdg-open betaxshell://root@192.168.1.100
+```
+
+## <Icon name="shield-check" size="1.2em" /> 安全注意事项
+
+### 验证链接
+
+<Icon name="eye" size="1.2em" /> 点击链接前确认：
+
+- <Icon name="check" size="1.2em" /> 链接来源可信
+- <Icon name="check" size="1.2em" /> 主机地址正确
+- <Icon name="check" size="1.2em" /> 端口号合理
+
+> TODO: 添加链接确认对话框截图
+
+### 连接确认
+
+<Icon name="info-circle" size="1.2em" /> 首次连接时：
+
+1. 显示连接确认对话框
+2. 展示连接参数
+3. 需要用户确认后才连接
+4. 可选择记住信任
+
+### 自动保存主机
+
+<Icon name="save" size="1.2em" /> 通过深度链接连接时：
+
+- 可选择自动保存为主机
+- 保存到配置的分组
+- 便于日后快速访问
+
+## <Icon name="lightbulb" size="1.2em" /> 使用技巧
+
+### 技巧 1：使用标签页
+
+<Icon name="tags" size="1.2em" /> 在新标签页中打开：
+
+- 浏览器中 `Ctrl + 点击` 链接
+- 在新标签页打开多个服务器
+- 准备好多个连接
+
+### 技巧 2：批量操作
+
+<Icon name="squares-four" size="1.2em" /> 准备批量连接：
+
+1. 在文档中创建多个服务器链接
+2. 依次点击每个链接
+3. BetaXShell 打开多个连接
+4. 同时管理多个服务器
+
+### 技巧 3：命令快捷方式
+
+<Icon name="lightning" size="1.2em" /> 预配置常用命令：
+
+```html
+<!-- 连接并查看日志 -->
+<a href="betaxshell://admin@server.com?command=tail -f /var/log/app.log">
+  查看应用日志
+</a>
+
+<!-- 连接并监控资源 -->
+<a href="betaxshell://admin@server.com?command=htop">
+  监控系统资源
+</a>
+
+<!-- 连接并重启服务 -->
+<a href="betaxshell://admin@server.com?command=systemctl restart nginx">
+  重启 Nginx
+</a>
+```
+
+## <Icon name="bug" size="1.2em" /> 常见问题
+
+### 点击链接无反应
+
+**问题**：点击 betaxshell:// 链接没有反应
+
+**解决方案**：
+1. <Icon name="gear" size="1.2em" /> 检查协议关联设置
+2. <Icon name="arrow-clockwise" size="1.2em" /> 重新安装 BetaXShell
+3. <Icon name="desktop" size="1.2em" /> 在系统设置中设置默认应用
+
+### 提示未知协议
+
+**问题**：系统提示"未知协议 betaxshell"
+
+**解决方案**：
+1. <Icon name="download" size="1.2em" /> 重新安装 BetaXShell
+2. <Icon name="power" size="1.2em" /> 重启电脑
+3. <Icon name="cog" size="1.2em" /> 手动注册协议关联
+
+### 无法传递参数
+
+**问题**：查询参数没有生效
+
+**解决方案**：
+1. <Icon name="code" size="1.2em" /> 检查 URL 编码是否正确
+2. <Icon name="eye" size="1.2em" /> 查看 BetaXShell 日志
+3. <Icon name="bug" size="1.2em" /> 向开发团队反馈问题
+
+## 相关链接
+
+- <Icon name="server" size="1.2em" /> [主机管理](/user-guide/hosts) - 主机配置
+- <Icon name="terminal" size="1.2em" /> [终端使用](/user-guide/terminal) - 终端操作
+- <Icon name="question-circle" size="1.2em" /> [常见问题](/faq) - 深度链接 FAQ

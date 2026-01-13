@@ -1,0 +1,313 @@
+---
+title: 常见问题
+description: BetaXShell 常见问题解答
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+这里整理了用户最常问的问题和解决方案，帮助你快速解决使用中的疑问。
+
+## 安装和更新
+
+### <Icon name="question" size="1.2em" /> BetaXShell 免费吗？
+
+**A**: 是的，BetaXShell 完全免费且开源，使用 MIT 协议。你可以自由使用、修改和分发。
+
+### <Icon name="question" size="1.2em" /> 支持哪些操作系统？
+
+**A**: 支持 Windows 10+、macOS 10.15+、主流 Linux 发行版（Ubuntu、Fedora、Debian、Arch Linux 等）。
+
+### <Icon name="question" size="1.2em" /> 如何更新到最新版本？
+
+**A**:
+- <Icon name="arrow-clockwise" size="1em" /> **自动更新**：应用会自动检测新版本并提示更新
+- <Icon name="download" size="1em" /> **手动更新**：访问 [GitHub Releases](https://github.com/skye-z/betax-shell-releases/releases) 下载最新版本
+
+### <Icon name="question" size="1.2em" /> 便携版和安装版有什么区别？
+
+**A**:
+- <Icon name="desktop" size="1em" /> **安装版**：正式安装，集成到系统，支持自动更新
+- <Icon name="usb" size="1em" /> **便携版**：解压即用，无需安装，适合临时使用
+
+## 连接问题
+
+### <Icon name="warning" size="1.2em" /> 无法连接到服务器，提示"Connection refused"
+
+**A**:
+1. <Icon name="magnifying-glass" size="1em" /> 检查服务器地址和端口是否正确
+2. <Icon name="server" size="1em" /> 确认 SSH 服务正在运行：`systemctl status sshd`
+3. <Icon name="shield" size="1em" /> 检查防火墙设置
+4. <Icon name="terminal" size="1em" /> 尝试使用命令行 SSH 测试连接
+
+### <Icon name="warning" size="1.2em" /> 连接时提示"Host key verification failed"
+
+**A**:
+1. <Icon name="info" size="1em" /> 主机密钥已变更，可能重新安装了系统
+2. <Icon name="trash" size="1em" /> 右键主机 > **"清除指纹"**
+3. <Icon name="arrow-right" size="1em" /> 重新连接，确认新的指纹
+
+### <Icon name="warning" size="1.2em" /> 连接经常断开
+
+**A**:
+1. <Icon name="toggle-on" size="1em" /> 启用 **"保持连接"** 功能（设置 > 连接）
+2. <Icon name="clock" size="1em" /> 设置合理的心跳间隔（建议 30 秒）
+3. <Icon name="wifi" size="1em" /> 检查网络稳定性
+4. <Icon name="gear" size="1em" /> 配置 SSH 服务器端的 `ClientAliveInterval`
+
+### <Icon name="speedometer" size="1.2em" /> 连接速度很慢
+
+**A**:
+1. <Icon name="graph-up" size="1em" /> 检查网络延迟和带宽
+2. <Icon name="x-circle" size="1em" /> 禁用 DNS 解析：设置 > 终端 > 禁用反向 DNS 查找
+3. <Icon name="lightning" size="1em" /> 使用加密算法加速：编辑 SSH 配置使用更快的加密算法
+
+## 认证和安全
+
+### <Icon name="question" size="1.2em" /> 如何使用 SSH 私钥认证？
+
+**A**:
+1. <Icon name="door-enter" size="1em" /> 进入 **"密钥管理"**
+2. <Icon name="upload" size="1em" /> 点击 **"导入密钥"**，选择私钥文件
+3. <Icon name="pencil" size="1em" /> 编辑主机，在认证方式中选择密钥
+4. <Icon name="key" size="1em" /> 如需密钥密码，在"密钥密码"中输入
+
+### <Icon name="question" size="1.2em" /> 支持哪些密钥格式？
+
+**A**: 支持 OpenSSH 格式的密钥，包括：
+- <Icon name="checkmark" size="1em" /> RSA
+- <Icon name="checkmark" size="1em" /> ECDSA
+- <Icon name="checkmark" size="1em" color="var(--sl-color-accent)" /> Ed25519（推荐）
+
+### <Icon name="lock-closed" size="1.2em" /> 密码保存在哪里安全吗？
+
+**A**:
+- <Icon name="shield-check" size="1em" /> 密码使用操作系统提供的加密存储（如 Windows 凭据管理器、macOS Keychain）
+- <Icon name="cloud-off" size="1em" /> 本地加密存储，不会上传到云端
+- <Icon name="lock" size="1em" /> 建议启用应用锁定功能（设置 > 安全）
+
+### <Icon name="question" size="1.2em" /> 可以保存不同主机的不同密码吗？
+
+**A**: 可以。每个主机的密码独立保存，互不影响。
+
+## 终端使用
+
+### <Icon name="question" size="1.2em" /> 如何复制粘贴文本？
+
+**A**:
+- <Icon name="copy" size="1em" /> **复制**：选中文本后自动复制
+- <Icon name="clipboard" size="1em" /> **粘贴**：右键点击终端或按 `Ctrl+Shift+V`
+- <Icon name="gear" size="1em" /> 可在设置中自定义快捷键
+
+### <Icon name="question" size="1.2em" /> 如何调整字体大小？
+
+**A**:
+- <Icon name="text-size" size="1em" /> 快捷键：`Ctrl + Plus/Minus`
+- <Icon name="mouse-right-click" size="1em" /> 或右键 > "字体大小"
+- <Icon name="sliders" size="1em" /> 或在设置中设置默认字体大小
+
+### <Icon name="question" size="1.2em" /> 支持哪些终端类型？
+
+**A**: 支持 xterm、vt100、vt220 等主流终端类型。默认使用 xterm，兼容性最佳。
+
+### <Icon name="question" size="1.2em" /> 颜色方案可以自定义吗？
+
+**A**:
+1. <Icon name="palette" size="1em" /> 进入设置 > 终端外观
+2. <Icon name="swatchbook" size="1em" /> 选择预设方案或自定义颜色
+3. <Icon name="paint-brush" size="1em" /> 可分别设置前景色、背景色、ANSI 颜色
+
+### <Icon name="question" size="1.2em" /> 如何使用分屏功能？
+
+**A**:
+1. <Icon name="layout-columns" size="1em" /> 点击终端标签页的 **"分屏"** 图标
+2. <Icon name="arrows-vertical" size="1em" /> 选择分屏方向（水平/垂直）
+3. <Icon name="square" size="1em" /> 两个分屏独立操作，互不干扰
+
+## 文件传输
+
+### <Icon name="warning" size="1.2em" /> SFTP 连接失败怎么办？
+
+**A**:
+1. <Icon name="checkmark" size="1em" /> 确认 SSH 连接正常
+2. <Icon name="magnifying-glass" size="1em" /> 检查 SFTP 子系统是否启用：`grep sftp /etc/ssh/sshd_config`
+3. <Icon name="user" size="1em" /> 尝试使用 root 用户连接
+4. <Icon name="folder" size="1em" /> 检查用户主目录权限
+
+### <Icon name="speedometer" size="1.2em" /> 文件传输速度慢？
+
+**A**:
+1. <Icon name="graph-up" size="1em" /> 检查网络带宽
+2. <Icon name="layers" size="1em" /> 调整传输并发数（设置 > 传输）
+3. <Icon name="file-zip" size="1em" /> 使用压缩传输（对于文本文件）
+4. <Icon name="lightning" size="1em" /> 尝试使用多个连接并行传输
+
+### <Icon name="question" size="1.2em" /> 如何修改默认下载目录？
+
+**A**:
+1. <Icon name="gear" size="1em" /> 进入设置 > 通用设置
+2. <Icon name="folder-open" size="1em" /> 找到"下载位置"
+3. <Icon name="pencil" size="1em" /> 点击 **"更改"** 选择新的目录
+4. <Icon name="arrow-counter-clockwise" size="1em" /> 或点击 **"重置为默认"** 使用系统默认位置
+
+### <Icon name="question" size="1.2em" /> 支持大文件传输吗？
+
+**A**: 支持任意大小的文件传输。大文件传输时：
+- <Icon name="chart-line" size="1em" /> 显示实时进度
+- <Icon name="arrow-u-up-left" size="1em" /> 支持断点续传（部分情况）
+- <Icon name="window" size="1em" /> 可在后台传输，不影响其他操作
+
+## 功能特性
+
+### <Icon name="question" size="1.2em" /> 系统托盘功能如何使用？
+
+**A**:
+1. <Icon name="window-minimize" size="1em" /> 点击窗口关闭按钮，应用最小化到托盘
+2. <Icon name="mouse-right-click" size="1em" /> 右键托盘图标显示快捷菜单
+3. <Icon name="clock" size="1em" /> 在"最近主机"中选择要连接的主机
+4. <Icon name="x-circle" size="1em" /> 选择"退出"完全关闭应用
+
+详见：<Icon name="arrow-right" size="1em" /> [系统托盘功能](/features/system-tray)
+
+### <Icon name="question" size="1.2em" /> 如何使用深度链接？
+
+**A**:
+- <Icon name="link" size="1em" /> 协议格式：`betaxshell://user@host:port`
+- <Icon name="globe" size="1em" /> 从浏览器或其他应用点击链接
+- <Icon name="arrow-right" size="1em" /> 自动打开 BetaXShell 并启动连接
+- <Icon name="gear" size="1em" /> 可在系统设置中关联协议处理
+
+详见：<Icon name="arrow-right" size="1em" /> [深度链接](/features/deep-link)
+
+### <Icon name="question" size="1.2em" /> 自动更新会丢失我的配置吗？
+
+**A**: <Icon name="checkmark-circle" size="1em" color="var(--sl-color-success)" /> 不会。自动更新只更新应用程序，所有配置文件（主机、密钥、设置等）都会保留。
+
+### <Icon name="question" size="1.2em" /> 支持多语言吗？
+
+**A**:
+- <Icon name="globe" size="1em" /> 界面支持中文和英文
+- <Icon name="translate" size="1em" /> 可在设置中切换语言
+- <Icon name="text" size="1em" /> 终端支持 Unicode，可显示任意语言字符
+
+## 社区命令
+
+### <Icon name="question" size="1.2em" /> 如何安装社区命令？
+
+**A**:
+1. <Icon name="store" size="1em" /> 进入 **"命令市场"**
+2. <Icon name="magnifying-glass" size="1em" /> 浏览或搜索命令
+3. <Icon name="download" size="1em" /> 点击 **"安装"** 按钮
+4. <Icon name="checkmark" size="1em" /> 命令将出现在快捷命令列表
+
+详见：<Icon name="arrow-right" size="1em" /> [命令市场](/community/overview)
+
+### <Icon name="lock-closed" size="1.2em" /> 社区命令安全吗？
+
+**A**:
+- <Icon name="shield-check" size="1em" /> 所有命令都经过严格的安全审查
+- <Icon name="code" size="1em" /> 可以查看命令源码
+- <Icon name="flask" size="1em" /> 建议先在测试环境验证
+- <Icon name="warning" size="1em" /> 不要安装来路不明的命令
+
+### <Icon name="question" size="1.2em" /> 如何创建自己的命令？
+
+**A**:
+1. <Icon name="book" size="1em" /> 学习命令开发指南
+2. <Icon name="code" size="1em" /> 编写命令脚本
+3. <Icon name="upload" size="1em" /> 提交到社区命令仓库
+4. <Icon name="checkmark" size="1em" /> 经过审核后发布
+
+详见：<Icon name="arrow-right" size="1em" /> [贡献命令](/community/contributing)
+
+## 故障排除
+
+### <Icon name="bug" size="1.2em" /> 应用崩溃了怎么办？
+
+**A**:
+1. <Icon name="arrow-clockwise" size="1em" /> 重启应用
+2. <Icon name="file-text" size="1em" /> 检查错误日志：设置 > 关于 > "查看日志"
+3. <Icon name="arrow-counter-clockwise" size="1em" /> 尝试重置配置
+4. <Icon name="github-logo" size="1em" /> 如果问题持续，在 [GitHub Issues](https://github.com/skye-z/betax-shell-releases/issues) 报告问题
+
+### <Icon name="memory" size="1.2em" /> 内存占用过高？
+
+**A**:
+1. <Icon name="x-circle" size="1em" /> 关闭不需要的终端会话
+2. <Icon name="trash" size="1em" /> 清理旧的传输记录
+3. <Icon name="sliders" size="1em" /> 调整终端缓冲区大小（设置 > 终端）
+4. <Icon name="arrow-clockwise" size="1em" /> 重启应用释放内存
+
+### <Icon name="question" size="1.2em" /> 如何重置所有设置？
+
+**A**:
+1. <Icon name="x-circle" size="1em" /> 关闭应用
+2. <Icon name="trash" size="1em" /> 删除配置目录：
+   - <Icon name="windows-logo" size="1em" /> Windows: `%APPDATA%/betaxshell`
+   - <Icon name="apple-logo" size="1em" /> macOS: `~/Library/Application Support/betaxshell`
+   - <Icon name="linux-logo" size="1em" /> Linux: `~/.config/betaxshell`
+3. <Icon name="arrow-clockwise" size="1em" /> 重新启动应用
+
+### <Icon name="question" size="1.2em" /> 如何完全卸载？
+
+**A**:
+1. <Icon name="download" size="1em" /> 导出主机配置和密钥（作为备份）
+2. <Icon name="trash" size="1em" /> 卸载应用：
+   - <Icon name="windows-logo" size="1em" /> Windows: 控制面板 > 程序和功能
+   - <Icon name="apple-logo" size="1em" /> macOS: 删除 `/Applications/BetaXShell.app`
+   - <Icon name="linux-logo" size="1em" /> Linux: 包管理器卸载
+3. <Icon name="folder" size="1em" /> 删除配置目录（可选）
+
+## 性能优化
+
+### <Icon name="gauge" size="1.2em" /> 如何减少资源占用？
+
+**A**:
+1. <Icon name="number-1" size="1em" /> 限制同时打开的终端数量
+2. <Icon name="number-2" size="1em" /> 减小终端缓冲区大小
+3. <Icon name="number-3" size="1em" /> 关闭不需要的功能（如日志记录）
+4. <Icon name="number-4" size="1em" /> 使用硬件加速（设置 > 性能）
+
+### <Icon name="speedometer" size="1.2em" /> 如何提升连接速度？
+
+**A**:
+1. <Icon name="database" size="1em" /> 使用 DNS 缓存
+2. <Icon name="number-2" size="1em" /> 禁用 IPv6（如果网络不支持）
+3. <Icon name="number-3" size="1em" /> 调整加密算法
+4. <Icon name="number-4" size="1em" /> 使用主机别名而非域名
+
+## 其他问题
+
+### <Icon name="question" size="1.2em" /> 可以同时连接同一台主机的多个会话吗？
+
+**A**: 可以。右键主机 > "新建会话"，可以打开多个独立的会话。
+
+### <Icon name="question" size="1.2em" /> 支持脚本自动化吗？
+
+**A**: 支持。可以通过命令行工具或 API 实现自动化操作。
+
+### <Icon name="question" size="1.2em" /> 如何报告 Bug 或建议功能？
+
+**A**:
+1. <Icon name="github-logo" size="1em" /> 访问 [GitHub Issues](https://github.com/skye-z/betax-shell-releases/issues)
+2. <Icon name="magnifying-glass" size="1em" /> 搜索是否已有相似问题
+3. <Icon name="plus" size="1em" /> 创建新的 Issue，详细描述问题或建议
+4. <Icon name="upload" size="1em" /> 提供日志和复现步骤
+
+### <Icon name="question" size="1.2em" /> 可以参与项目开发吗？
+
+**A**: 当然！欢迎贡献代码：
+1. <Icon name="github-logo" size="1em" /> Fork 项目仓库
+2. <Icon name="branch" size="1em" /> 创建功能分支
+3. <Icon name="pull-request" size="1em" /> 提交 Pull Request
+4. <Icon name="eye" size="1em" /> 等待代码审查和合并
+
+## 还需要帮助？
+
+如果以上 FAQ 没有解决你的问题：
+
+- <Icon name="book" size="1em" /> 查看[用户指南](/user-guide/hosts)获取详细说明
+- <Icon name="wrench" size="1em" /> 访问[故障排除](/troubleshooting)页面
+- <Icon name="chats" size="1em" /> 在 [GitHub Discussions](https://github.com/skye-z/betax-shell-releases/discussions) 提问
+- <Icon name="envelope" size="1em" /> 联系支持团队
+
+我们很乐意帮助你！

@@ -1,0 +1,97 @@
+---
+title: 命令市场
+description: 探索和安装社区贡献的快捷命令
+---
+
+import { Icon } from '@astrojs/starlight/components'
+import CommandList from '../../../components/CommandList.astro'
+import typeListJson from '../../../content/data/official-type-list.json'
+
+BetaXShell 社区命令市场是一个由社区驱动的命令库，用户可以在这里发现、安装和使用各种实用的快捷命令，大幅提升工作效率。
+
+## <Icon name="store" size="1.2em" /> 什么是社区命令？
+
+社区命令是由 BetaXShell 用户和开发者贡献的预定义命令脚本，可以：
+
+- <Icon name="lightning" size="1em" /> **自动化日常任务**：一键执行复杂的运维操作
+- <Icon name="layers" size="1em" /> **批量管理**：同时对多台服务器执行命令
+- <Icon name="graph-up" size="1em" /> **监控巡检**：快速获取服务器状态信息
+- <Icon name="rocket" size="1em" /> **部署发布**：简化应用部署流程
+- <Icon name="bug" size="1em" /> **故障排查**：快速定位和解决问题
+
+<Icon name="shield-check" size="1em" color="var(--sl-color-success)" /> 每个命令都经过社区审核和测试，确保安全可靠。
+
+## 可用命令
+
+以下是当前可用的社区命令，点击分类标题可以快速定位：
+
+<CommandList />
+
+命令列表最后更新时间：{new Date(typeListJson.update_at).toLocaleDateString('zh-CN')}
+
+## <Icon name="magnifying-glass" size="1.2em" /> 浏览命令市场
+
+### 通过应用内浏览
+
+1. <Icon name="door-enter" size="1em" /> 打开 BetaXShell
+2. <Icon name="store" size="1em" /> 点击左侧边栏的 **"命令市场"** 图标
+3. <Icon name="magnifying-glass" size="1em" /> 浏览不同分类的命令
+4. <Icon name="eye" size="1em" /> 查看命令详情、使用说明和用户评价
+
+### 通过网页浏览
+
+<Icon name="globe" size="1em" /> 访问 [BetaXShell 命令市场](https://github.com/betaxshell/community-commands) 查看完整命令列表。
+
+## <Icon name="download" size="1.2em" /> 安装命令
+
+### 从应用内安装
+
+1. <Icon name="magnifying-glass" size="1em" /> 在命令市场找到想要的命令
+2. <Icon name="download" size="1em" /> 点击 **"安装"** 按钮
+3. <Icon name="shield-check" size="1em" /> 确认安装权限
+4. <Icon name="checkmark" size="1em" /> 安装完成后在"快捷命令"中使用
+
+### 手动安装
+
+1. <Icon name="github-logo" size="1em" /> 从 GitHub 下载命令配置文件
+2. <Icon name="gear" size="1em" /> 点击 **"设置"** > **"命令管理"** > **"导入命令"**
+3. <Icon name="upload" size="1em" /> 选择下载的配置文件
+4. <Icon name="checkmark" size="1em" /> 导入成功后即可使用
+
+## <Icon name="shield-check" size="1.2em" /> 命令安全
+
+### 审核机制
+
+所有社区命令都经过以下审核流程：
+
+1. <Icon name="code" size="1em" /> **代码审查**：检查恶意代码和安全漏洞
+2. <Icon name="flask" size="1em" /> **功能测试**：确保命令按预期工作
+3. <Icon name="book" size="1em" /> **文档验证**：使用说明清晰完整
+4. <Icon name="chat-text" size="1em" /> **社区反馈**：通过用户评价验证质量
+
+### 使用注意事项
+
+- <Icon name="eye" size="1em" /> **仔细审查**：安装前查看命令源码
+- <Icon name="flask" size="1em" /> **测试环境**：先在测试服务器验证
+- <Icon name="key" size="1em" /> **权限控制**：了解命令需要的权限
+- <Icon name="arrow-up" size="1em" /> **定期更新**：保持命令为最新版本
+
+### 报告问题
+
+发现命令有问题？
+
+1. <Icon name="flag" size="1em" /> 在命令详情页点击 **"报告问题"**
+2. <Icon name="chat-text" size="1em" /> 描述问题现象和复现步骤
+3. <Icon name="users" size="1em" /> 开发团队会及时处理
+
+## <Icon name="heart" size="1.2em" /> 贡献你的命令
+
+<Icon name="lightbulb" size="1em" /> 开发了实用的命令？分享给社区，帮助更多人提升效率！
+
+<Icon name="arrow-right" size="1em" /> 查看 [贡献指南](/community/contributing) 了解如何贡献命令。
+
+## 相关链接
+
+- <Icon name="book" size="1em" /> [使用社区命令](/community/using) - 学习如何使用已安装的命令
+- <Icon name="heart" size="1em" /> [贡献命令](/community/contributing) - 向命令市场贡献你的作品
+- <Icon name="question-circle" size="1em" /> [FAQ](/faq) - 查看常见问题

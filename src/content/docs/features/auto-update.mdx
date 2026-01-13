@@ -1,0 +1,314 @@
+---
+title: 自动更新
+description: BetaXShell 自动更新功能介绍
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+BetaXShell 内置智能自动更新机制，让你始终保持最新版本，享受最新功能和修复。
+
+## <Icon name="refresh" size="1.2em" /> 自动更新概述
+
+### 为什么需要自动更新？
+
+<Icon name="star" size="1em" /> 自动更新带来以下好处：
+
+- <Icon name="shield-check" size="1em" /> **安全补丁**：自动修复安全漏洞
+- <Icon name="bug" size="1em" /> **Bug 修复**：及时修复已知问题
+- <Icon name="sparkles" size="1em" /> **新功能**：第一时间体验新特性
+- <Icon name="peace" size="1em" /> **省心省力**：无需手动检查和下载
+
+### 更新流程
+
+<Icon name="circuitry" size="1.2em" /> BetaXShell 自动更新的工作流程：
+
+1. <Icon name="search" size="1em" /> **检查更新**：定期或在启动时检查新版本
+2. <Icon name="download" size="1em" /> **下载更新**：后台下载更新包
+3. <Icon name="bell" size="1em" /> **提示安装**：通知你有可用更新
+4. <Icon name="arrow-up" size="1em" /> **安装更新**：一键安装并重启应用
+
+> TODO: 添加自动更新流程示意图
+
+## <Icon name="cog" size="1.2em" /> 配置自动更新
+
+### 访问更新设置
+
+<Icon name="gear" size="1.2em" /> 进入更新设置：
+
+1. 打开 **设置**
+2. 选择 **"更新"** 分类
+3. 配置自动更新选项
+
+> TODO: 添加更新设置界面截图
+
+### 检查更新频率
+
+<Icon name="calendar" size="1.2em" /> 设置检查频率：
+
+- **启动时检查**：每次启动时检查（推荐）
+- **每日检查**：每天检查一次
+- **每周检查**：每周检查一次
+- **手动检查**：不自动检查，手动触发
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **推荐**：启用"启动时检查"确保及时获取更新。
+
+### 自动下载
+
+<Icon name="download" size="1.2em" /> 自动下载更新包：
+
+- 启用后，发现新版本自动下载
+- 下载完成后再提示安装
+- 节省等待时间
+
+### 自动安装
+
+<Icon name="arrow-up" size="1.2em" /> 自动安装更新：
+
+- 下载完成后自动安装
+- 安装后自动重启应用
+- <Icon name="warning" size="1em" color="var(--sl-color-warning)" /> **注意**：会关闭所有打开的终端会话
+
+## <Icon name="bell" size="1.2em" /> 更新通知
+
+### 发现新版本
+
+<Icon name="megaphone" size="1.2em" /> 当有新版本时：
+
+1. <Icon name="badge" size="1em" /> 托盘图标显示徽章
+2. <Icon name="envelope" size="1em" /> 显示系统通知
+3. <Icon name="window" size="1em" /> 主窗口显示更新提示
+
+> TODO: 添加更新通知截图
+
+### 更新对话框
+
+点击更新提示后，显示更新详情：
+
+- <Icon name="tag" size="1.1em" /> **当前版本**：v1.0.0
+- <Icon name="rocket" size="1.1em" /> **最新版本**：v1.1.0
+- <Icon name="file-text" size="1.1em" /> **更新说明**：版本更新内容
+- <Icon name="calendar" size="1.1em" /> **发布日期**：2024-01-15
+
+> TODO: 添加更新对话框截图
+
+### 操作按钮
+
+更新对话框提供以下选项：
+
+- <Icon name="download" size="1em" /> **立即更新**：下载并安装更新
+- <Icon name="clock" size="1em" /> **稍后提醒**：延迟更新提醒
+- <Icon name="eye" size="1em" /> **查看详情**：在浏览器中查看完整更新日志
+- <Icon name="x-circle" size="1.1em" /> **跳过此版本**：忽略当前版本（不推荐）
+
+## <Icon name="download" size="1.2em" /> 下载更新
+
+### 下载进度
+
+<Icon name="chart-line" size="1.2em" /> 更新下载时显示：
+
+- 下载进度条
+- 下载速度
+- 剩余时间估算
+- 下载文件大小
+
+> TODO: 添加下载进度截图
+
+### 后台下载
+
+<Icon name="layer" size="1.2em" /> 下载特性：
+
+- <Icon name="eye-off" size="1em" /> 后台静默下载
+- <Icon name="pause" size="1em" /> 可暂停和继续
+- <Icon name="x-circle" size="1.1em" /> 可取消下载
+- <Icon name="wifi" size="1.2em" /> 支持断点续传
+
+### 下载完成
+
+<Icon name="check-circle" size="1.2em" color="var(--sl-color-success)" /> 下载完成后：
+
+- 显示通知
+- 提示安装更新
+- 可以选择立即安装或稍后
+
+## <Icon name="arrow-up" size="1.2em" /> 安装更新
+
+### 安装前确认
+
+<Icon name="info-circle" size="1.2em" /> 安装前会提示：
+
+- <Icon name="warning" size="1.2em" color="var(--sl-color-warning)" /> **所有终端会话将被关闭**
+- <Icon name="save" size="1.2em" /> **建议保存未完成的工作**
+- <Icon name="time" size="1.2em" /> **安装过程约需 1-2 分钟**
+
+### 安装过程
+
+<Icon name="cog" size="1.2em" /> 安装更新时：
+
+1. <Icon name="power" size="1em" /> 关闭 BetaXShell
+2. <Icon name="folder-open" size="1.2em" /> 提取更新文件
+3. <Icon name="replace" size="1.2em" /> 替换旧文件
+4. <Icon name="check" size="1.2em" /> 完成安装
+5. <Icon name="rocket" size="1.2em" /> 重新启动应用
+
+> TODO: 添加安装过程截图
+
+### 安装失败处理
+
+<Icon name="bug" size="1.2em" color="var(--sl-color-danger)" /> 如果安装失败：
+
+- 显示错误信息
+- 提供重试选项
+- 可手动下载安装包
+
+## <Icon name="hand" size="1.2em" /> 手动更新
+
+### 检查更新
+
+<Icon name="search" size="1.2em" /> 手动检查更新：
+
+1. 进入 **设置** > **更新**
+2. 点击 **"检查更新"** 按钮
+3. 查看更新状态
+
+### 下载安装包
+
+<Icon name="download" size="1.2em" /> 从 GitHub 下载：
+
+1. 访问 [GitHub Releases](https://github.com/skye-z/betax-shell-releases/releases)
+2. 下载最新版本安装包
+3. 运行安装程序
+4. 覆盖安装
+
+### 验证更新
+
+<Icon name="check-double" size="1.2em" /> 确认更新成功：
+
+- 进入 **设置** > **关于**
+- 查看当前版本号
+- 应显示为最新版本
+
+## <Icon name="history" size="1.2em" /> 更新历史
+
+### 查看更新历史
+
+<Icon name="list" size="1.2em" /> 浏览过往版本：
+
+1. 进入 **设置** > **更新** > **更新历史**
+2. 查看所有已安装的版本
+3. 点击版本查看更新内容
+
+> TODO: 添加更新历史界面截图
+
+### 版本信息
+
+每个版本显示：
+
+- <Icon name="tag" size="1.1em" /> 版本号
+- <Icon name="calendar" size="1.1em" /> 发布日期
+- <Icon name="file-text" size="1.1em" /> 更新摘要
+- <Icon name="link" size="1.1em" /> 完整更新日志链接
+
+## <Icon name="settings" size="1.2em" /> 高级选项
+
+### 测试版更新
+
+<Icon name="flask" size="1.2em" /> 参与测试计划：
+
+1. 进入 **设置** > **更新** > **高级**
+2. 启用 **"接收测试版更新"**
+3. 提前体验新功能
+4. 帮助发现和报告 Bug
+
+<Icon name="warning" size="1.2em" color="var(--sl-color-warning)" /> **注意**：测试版可能不稳定，不建议日常使用。
+
+### 更新源
+
+<Icon name="server" size="1.2em" /> 配置更新服务器：
+
+- **默认源**：GitHub Releases
+- **镜像源**：设置国内镜像加速
+- **自定义源**：企业内部更新服务器
+
+### 代理设置
+
+<Icon name="share" size="1.2em" /> 通过代理下载更新：
+
+1. 进入 **设置** > **网络** > **代理**
+2. 配置代理服务器
+3. 更新下载将通过代理
+
+## <Icon name="shield-check" size="1.2em" /> 更新安全
+
+### 签名验证
+
+<Icon name="certificate" size="1.2em" /> 更新包签名验证：
+
+- 所有更新包都经过数字签名
+- 安装前验证签名完整性
+- 防止篡改和恶意软件
+
+### 校验和验证
+
+<Icon name="checksum" size="1.2em" /> 文件完整性检查：
+
+- 下载后计算文件校验和
+- 与官方校验和对比
+- 确保文件未损坏
+
+## <Icon name="lightbulb" size="1.2em" /> 最佳实践
+
+### 推荐设置
+
+<Icon name="star" size="1.2em" /> 适合大多数用户的配置：
+
+1. <Icon name="check" size="1.2em" /> 启用"启动时检查"
+2. <Icon name="check" size="1.2em" /> 启用"自动下载"
+3. <Icon name="x" size="1.2em" /> 禁用"自动安装"（避免意外中断工作）
+4. <Icon name="check" size="1.2em" /> 启用更新通知
+
+### 企业环境
+
+<Icon name="building" size="1.2em" /> 企业部署建议：
+
+1. <Icon name="server" size="1.2em" /> 设置内部更新服务器
+2. <Icon name="users" size="1.2em" /> 统一管理更新策略
+3. <Icon name="calendar" size="1.2em" /> 定期更新而非实时更新
+4. <Icon name="flask" size="1.2em" /> 先在测试环境验证
+
+## <Icon name="bug" size="1.2em" /> 常见问题
+
+### 无法检查更新
+
+**问题**：点击"检查更新"没有反应
+
+**解决方案**：
+1. <Icon name="wifi" size="1.2em" /> 检查网络连接
+2. <Icon name="share" size="1.2em" /> 检查代理设置
+3. <Icon name="shield" size="1.2em" /> 检查防火墙设置
+4. <Icon name="globe" size="1.2em" /> 尝试访问 GitHub 确认网络可达
+
+### 下载失败
+
+**问题**：更新包下载失败
+
+**解决方案**：
+1. <Icon name="wifi" size="1.2em" /> 检查网络稳定性
+2. <Icon name="trash" size="1.2em" /> 清除下载缓存
+3. <Icon name="download" size="1.2em" /> 手动下载安装包
+4. <Icon name="repeat" size="1.2em" /> 重试下载
+
+### 安装后无法启动
+
+**问题**：更新后应用无法启动
+
+**解决方案**：
+1. <Icon name="power" size="1.2em" /> 重启电脑
+2. <Icon name="trash" size="1.2em" /> 卸载后重新安装
+3. <Icon name="folder-open" size="1.2em" /> 检查安装目录权限
+4. <Icon name="bug" size="1.2em" /> 向开发团队反馈
+
+## 相关链接
+
+- <Icon name="cog" size="1.2em" /> [设置说明](/user-guide/settings) - 更新设置
+- <Icon name="github-logo" size="1.2em" /> [GitHub Releases](https://github.com/skye-z/betax-shell-releases/releases) - 手动下载
+- <Icon name="question-circle" size="1.2em" /> [常见问题](/faq) - 更新相关 FAQ

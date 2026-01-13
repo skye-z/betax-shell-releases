@@ -1,0 +1,188 @@
+---
+title: 下载安装
+description: 下载并安装 BetaXShell
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+BetaXShell 提供了多种安装方式，支持 Windows、macOS 和 Linux 系统。选择最适合你的方式开始使用。
+
+## 系统要求
+
+### <Icon name="windows-logo" size="1.2em" /> Windows
+
+- Windows 10 或更高版本（64位）
+- 至少 4GB 内存
+- 100MB 可用磁盘空间
+
+### <Icon name="apple-logo" size="1.2em" /> macOS
+
+- macOS 10.15 (Catalina) 或更高版本
+- Intel 或 Apple Silicon (M1/M2/M3) 处理器
+- 至少 4GB 内存
+- 100MB 可用磁盘空间
+
+### <Icon name="linux-logo" size="1.2em" /> Linux
+
+- 主流发行版（Ubuntu 20.04+, Fedora 33+, Debian 11+, Arch Linux 等）
+- 至少 4GB 内存
+- 100MB 可用磁盘空间
+
+## 下载安装
+
+### <Icon name="windows-logo" size="1.2em" /> Windows
+
+**方式一：直接下载（推荐）**
+
+1. <Icon name="download" size="1em" /> 访问 [GitHub Releases](https://github.com/skye-z/betax-shell-releases/releases) 页面
+2. <Icon name="file" size="1em" /> 下载最新的 `BetaXShell-setup-<version>.exe` 安装包
+3. <Icon name="play" size="1em" /> 双击运行安装程序
+4. <Icon name="checkmark" size="1em" /> 按照安装向导完成安装
+5. <Icon name="rocket" size="1em" /> 启动 BetaXShell
+
+**方式二：使用 winget**
+
+```powershell
+winget install betaxshell
+```
+
+**方式三：便携版**
+
+1. <Icon name="download" size="1em" /> 从 [GitHub Releases](https://github.com/skye-z/betax-shell-releases/releases) 下载 `BetaXShell-<version>-win64.zip`
+2. <Icon name="file-zip" size="1em" /> 解压到任意目录
+3. <Icon name="play" size="1em" /> 运行 `BetaXShell.exe`
+
+### <Icon name="apple-logo" size="1.2em" /> macOS
+
+**方式一：DMG 安装包（推荐）**
+
+1. <Icon name="download" size="1em" /> 从 [GitHub Releases](https://github.com/skye-z/betax-shell-releases/releases) 下载 `BetaXShell-<version>.dmg`
+2. <Icon name="folder-open" size="1em" /> 双击打开 DMG 文件
+3. <Icon name="drag" size="1em" /> 将 BetaXShell 拖拽到 Applications 文件夹
+4. <Icon name="rocket" size="1em" /> 在启动台打开 BetaXShell
+
+**方式二：使用 Homebrew**
+
+```bash
+brew install --cask betaxshell
+```
+
+<Icon name="warning" size="1em" color="var(--sl-color-warning)" /> **注意事项**：首次启动时，可能需要在"系统偏好设置 > 安全性与隐私"中允许运行。
+
+### <Icon name="linux-logo" size="1.2em" /> Linux
+
+**Ubuntu/Debian (.deb)**
+
+```bash
+# 下载 .deb 包
+wget https://github.com/skye-z/betax-shell-releases/releases/download/v<version>/betaxshell_<version>_amd64.deb
+
+# 安装
+sudo dpkg -i betaxshell_<version>_amd64.deb
+sudo apt-get install -f  # 修复依赖
+```
+
+**Fedora/RHEL (.rpm)**
+
+```bash
+# 下载 .rpm 包
+wget https://github.com/skye-z/betax-shell-releases/releases/download/v<version>/betaxshell-<version>-1.x86_64.rpm
+
+# 安装
+sudo dnf install betaxshell-<version>-1.x86_64.rpm
+```
+
+**Arch Linux (AUR)**
+
+```bash
+yay -S betaxshell
+```
+
+**AppImage**
+
+```bash
+# 下载 AppImage
+wget https://github.com/skye-z/betax-shell-releases/releases/download/v<version>/BetaXShell-<version>-linux.AppImage
+
+# 添加执行权限
+chmod +x BetaXShell-<version>-linux.AppImage
+
+# 运行
+./BetaXShell-<version>-linux.AppImage
+```
+
+## 验证安装
+
+启动 BetaXShell 后，你应该能看到：
+
+- <Icon name="checkmark-circle" size="1em" color="var(--sl-color-success)" /> 主界面正常显示
+- <Icon name="checkmark-circle" size="1em" color="var(--sl-color-success)" /> 侧边栏显示主机列表
+- <Icon name="checkmark-circle" size="1em" color="var(--sl-color-success)" /> 可以添加新的 SSH 主机
+- <Icon name="checkmark-circle" size="1em" color="var(--sl-color-success)" /> 设置页面可以正常访问
+
+## 首次配置
+
+### 1. <Icon name="folder-open" size="1em" /> 设置默认下载目录
+
+1. 点击左下角的设置图标
+2. 在"通用设置"中找到"下载位置"
+3. 设置文件传输的默认保存目录
+
+### 2. <Icon name="file-text" size="1em" /> 配置日志（可选）
+
+1. 进入"日志"设置
+2. 选择日志级别（INFO、WARN、ERROR）
+3. 配置日志文件大小和保留数量
+
+### 3. <Icon name="palette" size="1em" /> 选择主题
+
+1. 进入"通用设置"
+2. 在"主题"中选择明亮或暗黑模式
+3. 根据需要调整终端字体和颜色
+
+## 更新 BetaXShell
+
+BetaXShell 支持自动更新功能：
+
+1. <Icon name="bell" size="1em" /> 当有新版本时，应用会自动检测并提示
+2. <Icon name="download" size="1em" /> 点击"立即更新"按钮，应用会下载并安装新版本
+3. <Icon name="arrow-clockwise" size="1em" /> 更新完成后重启应用即可
+
+你也可以访问 [GitHub Releases](https://github.com/skye-z/betax-shell-releases/releases) 页面手动下载最新版本。
+
+## 卸载
+
+### <Icon name="windows-logo" size="1.2em" /> Windows
+
+1. <Icon name="gear" size="1em" /> 打开"控制面板" > "程序和功能"
+2. <Icon name="trash" size="1em" /> 找到 BetaXShell 并点击卸载
+3. <Icon name="file" size="1em" /> 或者在安装目录运行 `unins000.exe`
+
+### <Icon name="apple-logo" size="1.2em" /> macOS
+
+```bash
+rm -rf /Applications/BetaXShell.app
+```
+
+### <Icon name="linux-logo" size="1.2em" /> Linux
+
+**Ubuntu/Debian:**
+```bash
+sudo apt remove betaxshell
+```
+
+**Fedora/RHEL:**
+```bash
+sudo dnf remove betaxshell
+```
+
+**Arch Linux:**
+```bash
+yay -R betaxshell
+```
+
+## 下一步
+
+<Icon name="arrow-right" size="1em" /> 安装完成后，查看[快速上手](/quick-start)指南学习如何添加第一个 SSH 主机并开始连接。
+
+<Icon name="question-circle" size="1em" /> 需要帮助？查看[常见问题](/faq)或[故障排除](/troubleshooting)页面。

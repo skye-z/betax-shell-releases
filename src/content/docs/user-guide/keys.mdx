@@ -1,0 +1,370 @@
+---
+title: 密钥管理
+description: 学习如何管理和使用 SSH 密钥
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+SSH 密钥认证比密码更安全、更方便。BetaXShell 提供完整的密钥管理功能，让你轻松管理所有 SSH 私钥。
+
+## <Icon name="key" size="1.2em" /> 什么是 SSH 密钥？
+
+SSH 密钥是一对用于身份验证的加密密钥：
+
+- <Icon name="lock" size="1em" /> **私钥**：保密，存储在你的本地电脑上
+- <Icon name="unlock" size="1em" /> **公钥**：公开，放置在服务器上
+
+<Icon name="shield-check" size="1em" color="var(--sl-color-success)" /> **优势**：
+
+- <Icon name="x-circle" size="1em" /> 无需记住密码
+- <Icon name="gauge" size="1em" /> 登录速度更快
+- <Icon name="shield" size="1em" /> 更安全，难以破解
+- <Icon name="unlock" size="1em" /> 支持自动化脚本
+
+## <Icon name="plus" size="1.2em" /> 密钥管理器
+
+### 打开密钥管理器
+
+<Icon name="door-enter" size="1.2em" /> 访问密钥管理：
+
+1. 点击左侧边栏的 **"密钥管理"** 图标
+2. 或进入 **设置** > **密钥管理**
+3. 查看所有已导入的密钥
+
+> TODO: 添加密钥管理器界面截图
+
+### 界面功能
+
+密钥管理器包含以下功能：
+
+- <Icon name="list" size="1em" /> **密钥列表**：显示所有已导入的密钥
+- <Icon name="plus" size="1em" /> **导入密钥**：添加新的私钥
+- <Icon name="pencil" size="1em" /> **编辑密钥**：修改密钥信息
+- <Icon name="eye" size="1em" /> **查看公钥**：复制公钥到服务器
+- <Icon name="trash" size="1em" /> **删除密钥**：移除不需要的密钥
+
+## <Icon name="download" size="1.2em" /> 导入密钥
+
+### 导入现有密钥
+
+<Icon name="upload" size="1.2em" /> 如果你已经有 SSH 密钥：
+
+1. 点击 **"导入密钥"** 按钮
+2. 选择私钥文件：
+   - OpenSSH 格式：`id_rsa`, `id_ed25519`
+   - PuTTY 格式：`.ppk` 文件
+   - 或其他兼容格式
+3. 输入密钥名称（便于识别）
+4. 如果密钥有密码，输入密钥密码
+5. 点击 **"导入"**
+
+> TODO: 添加导入密钥对话框截图
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **提示**：导入后密钥将加密存储在系统密钥链中。
+
+### 支持的密钥类型
+
+BetaXShell 支持以下密钥类型：
+
+- <Icon name="checkmark" size="1em" /> **RSA**：最常用的类型，2048 或 4096 位
+- <Icon name="checkmark" size="1em" /> **ECDSA**：椭圆曲线，更短但同样安全
+- <Icon name="checkmark" size="1em" /> **Ed25519**：现代、快速、安全（推荐）
+- <Icon name="checkmark" size="1em" /> **DSA**：旧式密钥（不推荐）
+
+## <Icon name="plus-circle" size="1.2em" /> 生成新密钥
+
+### 使用 BetaXShell 生成
+
+<Icon name="wand-magic-sparkles" size="1.2em" /> 快速生成新的密钥对：
+
+1. 点击 **"生成密钥"** 按钮
+2. 选择密钥类型：
+   - **Ed25519**（推荐）
+   - **RSA 4096**
+   - **ECDSA**
+3. 输入密钥名称（如 "MyKey"）
+4. 可选：设置密钥密码
+5. 点击 **"生成"**
+6. 等待密钥生成完成
+
+> TODO: 添加生成密钥对话框截图
+
+### 使用命令行生成
+
+<Icon name="terminal" size="1.2em" /> 也可以使用 ssh-keygen 生成：
+
+```bash
+# 生成 Ed25519 密钥（推荐）
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+# 生成 RSA 4096 位密钥
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+# 生成时设置密钥密码
+```
+
+生成后导入到 BetaXShell。
+
+## <Icon name="eye" size="1.2em" /> 查看和复制公钥
+
+### 查看公钥
+
+<Icon name="eye" size="1.2em" /> 查看密钥对应的公钥：
+
+1. 在密钥列表中选择密钥
+2. 点击 **"查看公钥"**
+3. 复制公钥内容
+
+> TODO: 添加查看公钥对话框截图
+
+### 部署公钥到服务器
+
+将公钥添加到服务器的 `~/.ssh/authorized_keys` 文件：
+
+**方法一：自动部署**
+
+1. 选择密钥
+2. 点击 **"部署到服务器"**
+3. 选择目标主机
+4. 输入主机密码（首次）
+5. 公钥自动添加到服务器
+
+**方法二：手动复制**
+
+1. 复制公钥内容
+2. 登录到服务器
+3. 执行以下命令：
+
+```bash
+# 创建 .ssh 目录（如果不存在）
+mkdir -p ~/.ssh
+
+# 添加公钥
+echo "你的公钥内容" >> ~/.ssh/authorized_keys
+
+# 设置正确的权限
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
+
+**方法三：使用 ssh-copy-id**
+
+```bash
+# 在本地终端执行
+ssh-copy-id -i ~/.ssh/my_key.pub user@host
+```
+
+## <Icon name="lock" size="1.2em" /> 密钥安全
+
+### 密钥密码
+
+<Icon name="shield" size="1.2em" /> 为密钥设置密码保护：
+
+- <Icon name="check" size="1em" /> 防止密钥被盗用
+- <Icon name="check" size="1em" /> 即使私钥文件泄露也相对安全
+- <Icon name="check" size="1em" /> BetaXShell 会安全存储密钥密码
+
+<Icon name="warning" size="1em" color="var(--sl-color-warning)" /> **注意**：虽然密钥密码是可选的，但强烈推荐设置。
+
+### 密钥存储
+
+<Icon name="lock-closed" size="1.2em" /> BetaXShell 使用系统密钥链加密存储：
+
+- <Icon name="windows-logo" size="1em" /> **Windows**：Windows 凭据管理器
+- <Icon name="apple-logo" size="1em" /> **macOS**：Keychain
+- <Icon name="linux-logo" size="1em" /> **Linux**：Secret Service API
+
+### 密钥权限
+
+<Icon name="shield-check" size="1.2em" /> 确保密钥文件安全：
+
+```bash
+# 设置私钥文件权限（仅所有者可读写）
+chmod 600 ~/.ssh/id_rsa
+
+# 设置 .ssh 目录权限（仅所有者可访问）
+chmod 700 ~/.ssh
+```
+
+<Icon name="warning" size="1em" color="var(--sl-color-warning)" /> **警告**：不要将私钥文件分享给任何人！
+
+## <Icon name="link" size="1.2em" /> 使用密钥连接
+
+### 配置主机使用密钥
+
+<Icon name="server" size="1.2em" /> 在主机配置中选择密钥：
+
+1. 编辑或添加主机
+2. 在 **"认证方式"** 中选择 **"密钥"**
+3. 从密钥管理器中选择密钥
+4. 如果有密钥密码，会自动从密钥链读取
+5. 保存配置
+
+> TODO: 添加主机配置使用密钥的截图
+
+### 混合认证
+
+<Icon name="layers" size="1.2em" /> 同时使用密钥和密码：
+
+1. 选择认证方式为 **"密钥 + 密码"**
+2. 首先尝试密钥认证
+3. 如果密钥认证失败，回退到密码认证
+4. 提高连接成功率
+
+## <Icon name="edit" size="1.2em" /> 管理密钥
+
+### 编辑密钥信息
+
+<Icon name="pencil" size="1.2em" /> 修改密钥元数据：
+
+1. 右键点击密钥
+2. 选择 **"编辑"**
+3. 可以修改：
+   - 密钥名称
+   - 密钥密码（如需更改）
+   - 备注信息
+4. 保存更改
+
+### 删除密钥
+
+<Icon name="trash" size="1.2em" /> 移除不需要的密钥：
+
+1. 选择要删除的密钥
+2. 点击 **"删除"** 按钮
+3. 确认删除
+
+<Icon name="warning" size="1em" color="var(--sl-color-warning)" /> **注意**：删除操作不可恢复，请确保密钥文件还有备份。
+
+### 导出密钥
+
+<Icon name="download" size="1.2em" /> 导出密钥文件：
+
+1. 右键点击密钥
+2. 选择 **"导出"**
+3. 选择导出位置
+4. 设置导出密码（可选）
+
+<Icon name="shield" size="1em" color="var(--sl-color-accent)" /> 导出的密钥文件会加密保护。
+
+## <Icon name="fingerprint" size="1.2em" /> 密钥指纹
+
+### 查看指纹
+
+<Icon name="eye" size="1.2em" /> 每个密钥都有唯一的指纹：
+
+1. 选择密钥
+2. 查看密钥详情
+3. 显示 SHA256 指纹
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **用途**：指纹用于验证密钥身份，确保连接到正确的服务器。
+
+### 验证服务器指纹
+
+首次连接服务器时：
+
+1. 显示服务器指纹
+2. 与服务器管理员提供的指纹对比
+3. 确认匹配后信任此服务器
+4. 后续自动验证
+
+## <Icon name="git-branch" size="1.2em" /> 多主机密钥管理
+
+### 不同主机不同密钥
+
+<Icon name="squares-four" size="1.2em" /> 为不同主机使用不同密钥：
+
+1. 创建多个密钥
+2. 在主机配置中分别选择
+3. 提高安全性
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **最佳实践**：生产环境和测试环境使用不同的密钥。
+
+### 密钥分组
+
+<Icon name="folder-tree" size="1.2em" /> 组织密钥：
+
+1. 为密钥添加标签
+2. 按环境分组（生产、测试、开发）
+3. 按用途分组（个人、工作、客户）
+4. 快速筛选和查找
+
+## <Icon name="lightbulb" size="1.2em" /> 最佳实践
+
+### 1. 使用强密钥类型
+
+<Icon name="star" size="1em" /> 推荐使用 Ed25519：
+
+- 更短的密钥长度
+- 更快的性能
+- 同等或更高的安全性
+
+### 2. 设置密钥密码
+
+<Icon name="lock" size="1em" /> 即使不方便也要设置：
+
+- 防止密钥被盗用
+- 一层额外的保护
+- 密码会被安全存储
+
+### 3. 定期轮换密钥
+
+<Icon name="calendar" size="1em" /> 定期更换密钥：
+
+- 每 6-12 个月生成新密钥
+- 删除不再使用的旧密钥
+- 保持密钥新鲜度
+
+### 4. 备份密钥
+
+<Icon name="download" size="1em" /> 安全备份重要密钥：
+
+- 导出密钥并加密
+- 存储在安全位置（如密码管理器）
+- 不要在云上公开存储
+
+### 5. 最小权限原则
+
+<Icon name="shield" size="1em" /> 限制密钥使用范围：
+
+- 为不同用途使用不同密钥
+- 在服务器上配置强制命令（如仅允许特定操作）
+- 定期审计密钥使用情况
+
+## <Icon name="bug" size="1.2em" /> 常见问题
+
+### 密钥认证失败
+
+**问题**：使用密钥无法连接
+
+**解决方案**：
+1. <Icon name="eye" size="1em" /> 确认公钥已添加到服务器
+2. <Icon name="folder" size="1em" /> 检查 `~/.ssh/authorized_keys` 文件权限
+3. <Icon name="terminal" size="1em" /> 查看服务器 SSH 日志：`/var/log/auth.log`
+4. <Icon name="bug" size="1em" /> 使用 `-v` 参数调试：`ssh -v user@host`
+
+### 密钥密码错误
+
+**问题**：提示密钥密码错误
+
+**解决方案**：
+1. <Icon name="key" size="1em" /> 确认输入的密钥密码正确
+2. <Icon name="refresh" size="1em" /> 尝试更新密钥密码
+3. <Icon name="lock" size="1em" /> 检查系统密钥链是否正常
+
+### 无法导入密钥
+
+**问题**：密钥文件无法导入
+
+**解决方案**：
+1. <Icon name="file" size="1em" /> 确认密钥格式正确（OpenSSH）
+2. <Icon name="text" size="1em" /> 检查密钥文件是否损坏
+3. <Icon name="convert" size="1em" /> 转换 PuTTY 格式到 OpenSSH：
+   ```bash
+   puttygen id_rsa.ppk -O private-openssh -o id_rsa
+   ```
+
+## 相关链接
+
+- <Icon name="server" size="1em" /> [主机管理](/user-guide/hosts) - 学习主机配置
+- <Icon name="terminal" size="1em" /> [终端使用](/user-guide/terminal) - 终端操作指南
+- <Icon name="question-circle" size="1em" /> [常见问题](/faq) - SSH 密钥相关 FAQ

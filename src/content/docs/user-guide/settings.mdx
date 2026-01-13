@@ -1,0 +1,376 @@
+---
+title: 设置说明
+description: 了解和配置 BetaXShell 的各项设置
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+BetaXShell 提供丰富的自定义选项，让你可以根据个人习惯调整应用行为。
+
+## <Icon name="settings" size="1.2em" /> 访问设置
+
+### 打开设置
+
+<Icon name="gear" size="1.2em" /> 进入设置页面：
+
+1. 点击左下角的 **"设置"** 图标
+2. 或使用快捷键：`Ctrl + ,`
+3. 设置页面在侧边栏中打开
+
+> TODO: 添加设置界面截图
+
+### 设置分类
+
+设置分为以下几个类别：
+
+- <Icon name="desktop" size="1em" /> **通用设置**：界面、语言、主题
+- <Icon name="wifi" size="1em" /> **连接设置**：SSH 连接参数
+- <Icon name="terminal" size="1em" /> **终端设置**：终端外观和行为
+- <Icon name="folder" size="1em" /> **传输设置**：文件传输选项
+- <Icon name="lock" size="1em" /> **安全设置**：密码、密钥管理
+- <Icon name="bell" size="1em" /> **通知设置**：各类通知配置
+- <Icon name="refresh" size="1em" /> **更新设置**：自动更新配置
+- <Icon name="info" size="1em" /> **关于**：版本信息和日志
+
+## <Icon name="desktop" size="1.2em" /> 通用设置
+
+### 界面语言
+
+<Icon name="globe" size="1em" /> 切换界面语言：
+
+- **简体中文**（默认）
+- **English**
+- 切换后立即生效
+
+### 主题
+
+<Icon name="palette" size="1em" /> 选择应用主题：
+
+- <Icon name="sun" size="1em" /> **浅色**
+- <Icon name="moon" size="1em" /> **深色**（默认）
+- <Icon name="desktop" size="1em" /> **跟随系统**：自动适配系统主题
+
+> TODO: 添加主题切换效果截图
+
+### 字体
+
+<Icon name="text" size="1em" /> 设置界面字体：
+
+1. 选择字体类型
+2. 调整字体大小
+3. 实时预览效果
+
+### 启动选项
+
+<Icon name="rocket" size="1em" /> 配置启动行为：
+
+- <Icon name="window-maximize" size="1em" /> **记住窗口大小**：关闭时保存，启动时恢复
+- <Icon name="sidebar" size="1em" /> **记住侧边栏状态**：保持展开/折叠状态
+- <Icon name="play" size="1em" /> **启动时最小化到托盘**：后台启动
+
+### 下载位置
+
+<Icon name="folder-open" size="1.2em" /> 设置默认下载目录：
+
+1. 点击 **"更改"** 按钮
+2. 选择文件夹
+3. 或点击 **"重置为默认"** 使用系统默认位置
+
+## <Icon name="wifi" size="1.2em" /> 连接设置
+
+### 连接超时
+
+<Icon name="clock" size="1em" /> 设置连接等待时间：
+
+- 默认：30 秒
+- 范围：10 - 120 秒
+- 根据网络环境调整
+
+### 保持连接
+
+<Icon name="heartbeat" size="1.2em" /> 启用心跳保持会话：
+
+1. 启用 **"保持连接"**
+2. 设置心跳间隔（秒）
+3. 推荐：30 秒
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> 防止长时间无操作导致连接断开。
+
+### 自动重连
+
+<Icon name="arrow-clockwise" size="1.2em" /> 连接断开时自动重连：
+
+1. 启用 **"自动重连"**
+2. 设置重连次数（默认：3 次）
+3. 设置重连间隔（默认：5 秒）
+
+### 会话恢复
+
+<Icon name="arrow-u-up-left" size="1.2em" /> 重启后恢复会话：
+
+- 记住所有打开的终端会话
+- 应用重启后自动恢复
+- 可选择恢复历史输出
+
+## <Icon name="terminal" size="1.2em" /> 终端设置
+
+详见：[终端使用](/user-guide/terminal) 中的 **终端外观定制** 章节。
+
+### 快速设置
+
+- **默认字体**：选择终端字体
+- **默认字号**：设置默认字体大小
+- **配色方案**：选择终端颜色主题
+- **光标样式**：Block、Underline、Bar
+- **滚动行数**：设置缓冲区大小
+
+## <Icon name="folder" size="1.2em" /> 传输设置
+
+详见：[文件传输](/user-guide/sftp) 中的 **传输设置** 章节。
+
+### 快速设置
+
+- **并发连接数**：同时传输的文件数（1-10）
+- **速度限制**：限制上传/下载速度
+- **启用压缩**：压缩传输加快速度
+- **断点续传**：支持传输中断后继续
+
+## <Icon name="lock" size="1.2em" /> 安全设置
+
+### 密码保存
+
+<Icon name="save" size="1.2em" /> 配置密码保存方式：
+
+- <Icon name="check" size="1em" /> **保存密码**：加密保存在系统密钥链
+- <Icon name="x" size="1em" /> **不保存**：每次连接时输入
+
+<Icon name="shield" size="1em" color="var(--sl-color-success)" /> 密码使用操作系统提供的加密存储。
+
+### 应用锁定
+
+<Icon name="lock-closed" size="1.2em" /> 启用应用锁定保护隐私：
+
+1. 启用 **"应用锁定"**
+2. 设置锁定方式：
+   - <Icon name="clock" size="1em" /> **闲置时间**：超过 X 分钟后锁定
+   - <Icon name="window-minimize" size="1em" /> **最小化时锁定**
+3. 设置锁定密码
+
+> TODO: 添加应用锁定设置截图
+
+### 主机密钥验证
+
+<Icon name="fingerprint" size="1.2em" /> 配置服务器指纹验证：
+
+- <Icon name="check" size="1em" /> **严格验证**：指纹改变时警告
+- <Icon name="exclamation" size="1em" /> **宽松验证**：仅首次验证
+
+<Icon name="warning" size="1em" color="var(--sl-color-warning)" /> 推荐启用严格验证以提高安全性。
+
+### 清除敏感数据
+
+<Icon name="eraser" size="1.2em" /> 清除保存的敏感信息：
+
+- **清除所有密码**：删除保存的主机密码
+- **清除密钥密码**：删除保存的密钥密码
+- **清除主机指纹**：重新验证服务器指纹
+
+## <Icon name="bell" size="1.2em" /> 通知设置
+
+### 连接通知
+
+<Icon name="plug" size="1.2em" /> 连接状态变化通知：
+
+- <Icon name="check" size="1em" /> **连接成功**：通知
+- <Icon name="x" size="1em" /> **连接失败**：通知
+- <Icon name="arrows-left-right" size="1.2em" /> **连接断开**：通知
+
+### 传输通知
+
+<Icon name="exchange" size="1.2em" /> 文件传输通知：
+
+- <Icon name="check" size="1em" /> **传输完成**：通知
+- <Icon name="x" size="1em" /> **传输失败**：通知
+- <Icon name="bell" size="1em" /> **长时间传输**：超过 30 秒时通知
+
+### 命令通知
+
+<Icon name="terminal" size="1.2em" /> 终端命令通知：
+
+- <Icon name="bell" size="1em" /> **长时间命令完成**：执行超过 30 秒时通知
+- <Icon name="eye" size="1em" /> **后台任务完成**：后台任务结束时通知
+
+### 通知方式
+
+<Icon name="window" size="1.2em" /> 选择通知方式：
+
+- <Icon name="desktop" size="1em" /> **系统通知**：使用系统通知中心
+- <Icon name="sound" size="1em" /> **声音提醒**：播放提示音
+- <Icon name="badge" size="1em" /> **应用角标**：显示未读数量
+
+## <Icon name="refresh" size="1.2em" /> 更新设置
+
+详见：[自动更新](/features/auto-update) 功能页面。
+
+### 快速设置
+
+- <Icon name="check" size="1em" /> **自动检查更新**：启动时检查
+- <Icon name="calendar" size="1em" /> **检查频率**：每日、每周、每月
+- <Icon name="download" size="1em" /> **自动下载**：有更新时自动下载
+- <Icon name="arrow-up" size="1em" /> **自动安装**：下载后自动安装
+
+## <Icon name="keyboard" size="1.2em" /> 快捷键设置
+
+### 查看快捷键
+
+<Icon name="list" size="1.2em" /> 查看所有快捷键：
+
+1. 进入 **设置** > **快捷键**
+2. 按功能分类显示
+3. 可以搜索快捷键
+
+> TODO: 添加快捷键设置界面截图
+
+### 自定义快捷键
+
+<Icon name="pencil" size="1.2em" /> 修改默认快捷键：
+
+1. 选择要修改的快捷键
+2. 点击 **"修改"** 按钮
+3. 按下新的快捷键组合
+4. 保存更改
+
+<Icon name="warning" size="1em" color="var(--sl-color-warning)" /> **注意**：避免与系统或其他应用冲突。
+
+### 重置快捷键
+
+<Icon name="arrow-counter-clockwise" size="1.2em" /> 恢复默认快捷键：
+
+- 点击 **"重置所有"** 按钮
+- 确认重置
+- 所有快捷键恢复为默认值
+
+## <Icon name="sliders" size="1.2em" /> 高级设置
+
+### 日志配置
+
+<Icon name="file-text" size="1.2em" /> 配置应用日志：
+
+1. **日志级别**：
+   - DEBUG：详细调试信息
+   - INFO：一般信息（默认）
+   - WARN：警告信息
+   - ERROR：仅错误信息
+
+2. **日志大小**：单个日志文件最大大小
+3. **日志数量**：保留的日志文件数量
+
+### 性能选项
+
+<Icon name="gauge" size="1.2em" /> 优化应用性能：
+
+- <Icon name="zap" size="1em" /> **硬件加速**：启用 GPU 加速
+- <Icon name="database" size="1em" /> **缓存大小**：调整内存缓存
+- <Icon name="layers" size="1em" /> **并发限制**：限制同时操作数
+
+### 开发者选项
+
+<Icon name="code" size="1.2em" /> 开发相关选项：
+
+- <Icon name="bug" size="1em" /> **启用调试模式**：显示调试信息
+- <Icon name="terminal" size="1.2em" /> **显示开发工具**：打开开发者工具
+- <Icon name="refresh" size="1em" /> **热重载**：开发时自动重载
+
+## <Icon name="import-export" size="1.2em" /> 导入导出设置
+
+### 导出设置
+
+<Icon name="download" size="1.2em" /> 备份当前设置：
+
+1. 进入 **设置** > **高级**
+2. 点击 **"导出设置"**
+3. 选择保存位置
+4. 设置文件会被导出为 JSON 文件
+
+### 导入设置
+
+<Icon name="upload" size="1.2em" /> 从备份恢复设置：
+
+1. 点击 **"导入设置"**
+2. 选择之前导出的设置文件
+3. 预览设置差异
+4. 确认导入
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **提示**：导入后需要重启应用才能生效。
+
+### 重置设置
+
+<Icon name="arrow-counter-clockwise" size="1.2em" /> 恢复默认设置：
+
+1. 点击 **"重置所有设置"**
+2. 确认重置
+3. 应用恢复到初始状态
+4. 主机和密钥不会被删除
+
+## <Icon name="info" size="1.2em" /> 关于
+
+### 版本信息
+
+<Icon name="tag" size="1em" /> 查看应用版本：
+
+- 当前版本号
+- 构建信息
+- 更新日期
+
+> TODO: 添加关于页面截图
+
+### 查看日志
+
+<Icon name="file-text" size="1.2em" /> 打开日志文件：
+
+1. 点击 **"查看日志"**
+2. 日志文件在系统默认编辑器中打开
+3. 用于问题诊断和反馈
+
+### 许可证
+
+<Icon name="certificate" size="1.2em" /> 查看许可证信息：
+
+- MIT 开源许可证
+- 第三方库许可证
+
+### 检查更新
+
+<Icon name="refresh" size="1em" /> 手动检查更新：
+
+1. 点击 **"检查更新"** 按钮
+2. 查看最新版本信息
+3. 如有更新，立即下载
+
+## <Icon name="lightbulb" size="1.2em" /> 设置建议
+
+### 新手推荐设置
+
+<Icon name="star" size="1.2em" /> 适合新手的配置：
+
+1. <Icon name="check" size="1em" /> 启用自动重连
+2. <Icon name="check" size="1em" /> 启用保持连接（30 秒）
+3. <Icon name="check" size="1em" /> 保存密码
+4. <Icon name="check" size="1em" /> 启用连接通知
+5. <Icon name="check" size="1em" /> 使用默认主题
+
+### 高级用户推荐
+
+<Icon name="trophy" size="1.2em" /> 适合高级用户的配置：
+
+1. <Icon name="check" size="1em" /> 启用应用锁定
+2. <Icon name="check" size="1em" /> 严格服务器指纹验证
+3. <Icon name="check" size="1em" /> 自定义快捷键
+4. <Icon name="check" size="1em" /> 调整终端缓冲区
+5. <Icon name="check" size="1em" /> 配置传输并发数
+
+## 相关链接
+
+- <Icon name="terminal" size="1em" /> [终端使用](/user-guide/terminal) - 终端相关设置
+- <Icon name="folder" size="1em" /> [文件传输](/user-guide/sftp) - 传输相关设置
+- <Icon name="lock" size="1em" /> [密钥管理](/user-guide/keys) - 安全相关设置

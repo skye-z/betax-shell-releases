@@ -1,0 +1,488 @@
+---
+title: 故障排除
+description: 解决 BetaXShell 常见问题和错误
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+遇到问题？本指南帮助你诊断和解决 BetaXShell 的常见问题。
+
+## <Icon name="search" size="1.2em" /> 问题诊断流程
+
+### 第一步：确认问题
+
+<Icon name="help-circle" size="1.2em" /> 明确问题类型：
+
+- <Icon name="plug" size="1.2em" /> **连接问题**：无法连接到服务器
+- <Icon name="terminal" size="1.2em" /> **终端问题**：终端显示异常
+- <Icon name="folder" size="1.2em" /> **传输问题**：文件传输失败
+- <Icon name="desktop" size="1.2em" /> **界面问题**：应用显示异常
+- <Icon name="gauge" size="1.2em" /> **性能问题**：应用运行缓慢
+
+### 第二步：查看日志
+
+<Icon name="file-text" size="1.2em" /> 获取详细日志信息：
+
+1. 进入 **设置** > **关于**
+2. 点击 **"查看日志"**
+3. 日志文件在默认编辑器中打开
+4. 搜索错误信息或警告
+
+> TODO: 添加日志查看界面截图
+
+### 第三步：尝试基本修复
+
+<Icon name="wrench" size="1.2em" /> 通用修复方法：
+
+1. <Icon name="arrow-clockwise" size="1.2em" /> 重启 BetaXShell
+2. <Icon name="power" size="1.2em" /> 重启电脑
+3. <Icon name="download" size="1.2em" /> 更新到最新版本
+4. <Icon name="eraser" size="1.2em" /> 清除应用缓存
+
+## <Icon name="plug" size="1.2em" /> 连接问题
+
+### 无法连接到服务器
+
+#### 问题 1：Connection refused
+
+<Icon name="x-circle" size="1.2em" color="var(--sl-color-danger)" /> **症状**：提示"Connection refused"
+
+**可能原因**：
+- SSH 服务未运行
+- 端口号错误
+- 防火墙阻止连接
+
+**解决方案**：
+```bash
+# 检查 SSH 服务状态
+systemctl status sshd
+# 或
+service ssh status
+
+# 启动 SSH 服务
+sudo systemctl start sshd
+# 或
+sudo service ssh start
+
+# 检查端口是否开放
+sudo netstat -tlnp | grep 22
+# 或
+ss -tlnp | grep 22
+```
+
+#### 问题 2：Connection timeout
+
+<Icon name="clock" size="1.2em" color="var(--sl-color-warning)" /> **症状**：连接超时
+
+**可能原因**：
+- 网络不通
+- 防火墙阻止
+- 主机地址错误
+
+**解决方案**：
+```bash
+# 测试网络连通性
+ping host
+
+# 测试端口是否开放
+telnet host 22
+# 或
+nc -zv host 22
+
+# 检查防火墙
+sudo iptables -L -n
+# 或
+sudo firewall-cmd --list-all
+```
+
+#### 问题 3：Host key verification failed
+
+<Icon name="warning" size="1.2em" color="var(--sl-color-warning)" /> **症状**：主机密钥验证失败
+
+**原因**：服务器重新安装或密钥变更
+
+**解决方案**：
+1. 右键主机 > **"清除指纹"**
+2. 重新连接
+3. 确认新的指纹
+4. 信任服务器
+
+> TODO: 添加清除指纹操作截图
+
+## <Icon name="lock" size="1.2em" /> 认证问题
+
+### 密码认证失败
+
+#### 问题：Authentication failed
+
+<Icon name="x-circle" size="1.2em" color="var(--sl-color-danger)" /> **可能原因**：
+- 用户名或密码错误
+- 账户被锁定
+- 密码过期
+
+**解决方案**：
+```bash
+# 在服务器上检查账户状态
+whoami
+id
+
+# 检查账户是否锁定
+sudo passwd -S username
+
+# 解锁账户
+sudo passwd -u username
+
+# 重置密码
+sudo passwd username
+```
+
+### 密钥认证失败
+
+#### 问题：Permission denied (publickey)
+
+<Icon name="key" size="1.2em" color="var(--sl-color-warning)" /> **可能原因**：
+- 公钥未添加到服务器
+- 私钥文件错误
+- 密钥密码错误
+
+**解决方案**：
+```bash
+# 检查 authorized_keys 文件
+cat ~/.ssh/authorized_keys
+
+# 检查文件权限
+ls -la ~/.ssh/
+# 应该是：
+# .ssh 目录：700 (drwx------)
+# authorized_keys：600 (-rw-------)
+
+# 修正权限
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+
+# 测试密钥认证
+ssh -v user@host
+# 查看详细的调试信息
+```
+
+## <Icon name="terminal" size="1.2em" /> 终端问题
+
+### 终端显示乱码
+
+#### 问题：中文显示为方框或乱码
+
+**解决方案**：
+1. 检查服务器编码：
+```bash
+echo $LANG
+locale
+```
+
+2. 设置为 UTF-8：
+```bash
+export LANG=zh_CN.UTF-8
+export LC_ALL=zh_CN.UTF-8
+
+# 添加到 ~/.bashrc
+echo 'export LANG=zh_CN.UTF-8' >> ~/.bashrc
+echo 'export LC_ALL=zh_CN.UTF-8' >> ~/.bashrc
+```
+
+3. 安装语言包：
+```bash
+# Ubuntu/Debian
+sudo apt install language-pack-zh-hans
+
+# CentOS/RHEL
+sudo yum install glibc-langpack-zh
+```
+
+### 终顿卡死
+
+#### 问题：终端无响应
+
+**解决方案**：
+1. 尝试发送中断信号：`Ctrl + C`
+2. 关闭终端标签页
+3. 断开连接后重新连接
+4. 检查服务器资源：
+```bash
+# 查看系统负载
+uptime
+top
+htop
+
+# 查看内存使用
+free -h
+
+# 查看磁盘使用
+df -h
+```
+
+## <Icon name="folder" size="1.2em" /> 文件传输问题
+
+### SFTP 连接失败
+
+#### 问题：无法打开文件浏览器
+
+**解决方案**：
+1. 确认 SSH 连接正常
+2. 检查 SFTP 子系统：
+```bash
+# 查看 SSH 配置
+sudo grep sftp /etc/ssh/sshd_config
+
+# 应该有类似这样的行：
+# Subsystem sftp /usr/lib/openssh/sftp-server
+
+# 如果没有，添加：
+sudo echo "Subsystem sftp /usr/lib/openssh/sftp-server" >> /etc/ssh/sshd_config
+
+# 重启 SSH 服务
+sudo systemctl restart sshd
+```
+
+### 文件传输中断
+
+#### 问题：传输过程中断开
+
+**解决方案**：
+1. 启用断点续传
+2. 检查网络稳定性
+3. 减小并发连接数
+4. 尝试使用命令行传输：
+```bash
+# 使用 scp 传输
+scp file user@host:/path/
+
+# 使用 rsync（支持断点续传）
+rsync -avz --progress file user@host:/path/
+
+# 使用 rsync 恢复中断的传输
+rsync -avz --partial --progress file user@host:/path/
+```
+
+## <Icon name="desktop" size="1.2em" /> 应用问题
+
+### 应用无法启动
+
+#### 问题：双击图标无反应
+
+**解决方案**：
+1. 从命令行启动查看错误：
+```bash
+# Windows
+BetaXShell.exe
+
+# macOS
+open /Applications/BetaXShell.app
+
+# Linux
+betaxshell
+```
+
+2. 检查日志文件
+3. 重新安装应用
+4. 检查系统要求
+
+### 应用崩溃
+
+#### 问题：应用突然关闭
+
+**解决方案**：
+1. 查看崩溃日志
+2. 更新到最新版本
+3. 清除应用数据：
+```bash
+# 删除配置目录
+# Windows: %APPDATA%\betaxshell
+# macOS: ~/Library/Application Support/betaxshell
+# Linux: ~/.config/betaxshell
+```
+
+4. 禁用硬件加速：
+   - 进入设置
+   - 禁用 **"硬件加速"**
+
+## <Icon name="gauge" size="1.2em" /> 性能问题
+
+### 应用占用内存高
+
+#### 问题：内存占用过大
+
+**解决方案**：
+1. 关闭不需要的终端会话
+2. 减小终端缓冲区大小
+3. 清理旧的传输记录
+4. 定期重启应用
+
+### 连接速度慢
+
+#### 问题：连接建立缓慢
+
+**解决方案**：
+1. 检查网络延迟：
+```bash
+ping host
+traceroute host
+```
+
+2. 禁用 DNS 反查：
+   - 编辑 `/etc/ssh/sshd_config`
+   - 添加：`UseDNS no`
+   - 重启 SSH 服务
+
+3. 使用更快的加密算法：
+```bash
+# 在客户端配置 ~/.ssh/config
+Host fast
+    HostName example.com
+    Ciphers aes128-gcm@openssh.com
+    KexAlgorithms diffie-hellman-group-exchange-sha256
+```
+
+## <Icon name="tools" size="1.2em" /> 诊断工具
+
+### 连接测试
+
+<Icon name="plug" size="1.2em" /> 测试 SSH 连接：
+
+```bash
+# 基本连接测试
+ssh -v user@host
+
+# 指定端口测试
+ssh -p 2222 user@host
+
+# 使用特定密钥
+ssh -i ~/.ssh/my_key user@host
+
+# 调试模式
+ssh -vvv user@host
+```
+
+### 网络诊断
+
+<Icon name="wifi" size="1.2em" /> 诊断网络问题：
+
+```bash
+# 测试连通性
+ping -c 4 host
+
+# 跟由追踪
+traceroute host
+# 或
+mtr host
+
+# 端口扫描
+nc -zv host 22
+
+# DNS 查询
+nslookup host
+dig host
+```
+
+### 系统检查
+
+<Icon name="server" size="1.2em" /> 检查服务器状态：
+
+```bash
+# 系统信息
+uname -a
+
+# SSH 服务状态
+systemctl status sshd
+
+# 监听端口
+ss -tlnp | grep :22
+
+# 认证日志
+tail -f /var/log/auth.log
+# 或
+tail -f /var/log/secure
+
+# 磁盘空间
+df -h
+
+# 内存使用
+free -h
+
+# 系统负载
+uptime
+```
+
+## <Icon name="question-circle" size="1.2em" /> 获取帮助
+
+### 自助资源
+
+<Icon name="book" size="1.2em" /> 查阅文档：
+
+- [用户指南](/user-guide/hosts)
+- [常见问题](/faq)
+- [GitHub Issues](https://github.com/skye-z/betax-shell-releases/issues)
+
+### 报告问题
+
+<Icon name="bug" size="1.2em" /> 需要报告 Bug？
+
+1. 搜索 Issues 确认问题未被报告
+2. 创建新的 Issue
+3. 提供以下信息：
+   - BetaXShell 版本号
+   - 操作系统版本
+   - 详细的错误描述
+   - 复现步骤
+   - 相关日志和截图
+
+### 社区支持
+
+<Icon name="users" size="1.2em" /> 获取社区帮助：
+
+- [GitHub Discussions](https://github.com/skye-z/betax-shell-releases/discussions)
+- [Discord 社区](https://discord.gg/betaxshell)
+
+## <Icon name="shield-check" size="1.2em" /> 安全问题
+
+### 密钥泄露
+
+<Icon name="warning" size="1.2em" color="var(--sl-color-warning)" /> **紧急情况处理**：
+
+如果你怀疑密钥已泄露：
+
+1. <Icon name="trash" size="1.2em" /> 立即从所有服务器删除公钥：
+```bash
+# 编辑 authorized_keys
+vi ~/.ssh/authorized_keys
+# 删除对应的公钥行
+```
+
+2. <Icon name="key" size="1.2em" /> 生成新的密钥对
+3. <Icon name="upload" size="1.2em" /> 部署新公钥到服务器
+4. <Icon name="eraser" size="1.2em" /> 删除旧密钥文件
+
+### 账户异常
+
+如果发现账户异常活动：
+
+1. <Icon name="lock" size="1.2em" /> 立即更改密码
+2. <Icon name="history" size="1.2em" /> 检查登录历史：
+```bash
+last
+lastb
+w
+```
+
+3. <Icon name="eye" size="1.2em" /> 查看认证日志：
+```bash
+sudo tail -f /var/log/auth.log
+# 或
+sudo tail -f /var/log/secure
+```
+
+4. <Icon name="user-shield" size="1.2em" /> 启用双因素认证（如可用）
+
+## 相关链接
+
+- <Icon name="cog" size="1.2em" /> [设置说明](/user-guide/settings) - 配置选项
+- <Icon name="key" size="1.2em" /> [密钥管理](/user-guide/keys) - 密钥问题
+- <Icon name="question-circle" size="1.2em" /> [常见问题](/faq) - 更多问题解答

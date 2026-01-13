@@ -1,0 +1,334 @@
+---
+title: 系统托盘
+description: 使用系统托盘提高工作效率
+---
+
+import { Icon } from '@astrojs/starlight/components'
+
+BetaXShell 的系统托盘功能让你可以将应用最小化到托盘，快速访问常用功能，而不占用任务栏空间。
+
+## <Icon name="bell" size="1.2em" /> 什么是系统托盘？
+
+系统托盘（System Tray）是操作系统通知区域旁边的图标区域。BetaXShell 托盘图标提供：
+
+- <Icon name="window-minimize" size="1em" /> **后台运行**：应用最小化到托盘
+- <Icon name="lightning" size="1em" /> **快速连接**：一键连接最近主机
+- <Icon name="menu" size="1em" /> **快捷菜单**：右键访问常用功能
+- <Icon name="info-circle" size="1em" /> **状态指示**：显示连接状态
+
+## <Icon name="desktop" size="1.2em" /> 托盘图标
+
+### 托盘图标外观
+
+<Icon name="eye" size="1.2em" /> BetaXShell 托盘图标显示不同的状态：
+
+- <Icon name="circle" size="1em" color="var(--sl-color-gray)" /> **灰色**：未连接任何主机
+- <Icon name="circle" size="1em" color="var(--sl-color-success)" /> **绿色**：至少连接一台主机
+- <Icon name="circle" size="1em" color="var(--sl-color-warning)" /> **黄色**：有主机连接断开
+- <Icon name="circle" size="1em" color="var(--sl-color-accent)" /> **蓝色**：正在连接
+
+> TODO: 添加托盘图标状态截图
+
+### 最小化到托盘
+
+<Icon name="window-minimize" size="1.2em" /> 将应用最小化到托盘：
+
+1. 点击窗口的 **关闭按钮**（×）
+2. 应用不会退出，而是最小化到托盘
+3. 继续在后台运行
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **提示**：可以在设置中配置关闭按钮的行为（最小化或退出）。
+
+### 从托盘恢复窗口
+
+<Icon name="window-maximize" size="1.2em" /> 重新打开应用窗口：
+
+- <Icon name="cursor" size="1em" /> **左键点击**托盘图标
+- 或 **双击**托盘图标
+- 应用窗口恢复显示
+
+## <Icon name="mouse-right-click" size="1.2em" /> 托盘菜单
+
+### 打开托盘菜单
+
+<Icon name="mouse-right-click" size="1.2em" /> 右键点击托盘图标打开菜单：
+
+> TODO: 添加托盘菜单截图
+
+### 菜单选项
+
+#### 显示/隐藏窗口
+
+<Icon name="desktop" size="1em" /> **显示 BetaXShell**
+
+- 如果窗口最小化，恢复显示
+- 如果窗口已显示，执行无操作
+
+#### 最近主机
+
+<Icon name="clock" size="1.2em" /> **最近主机**列表
+
+- 显示最近连接的主机
+- 按连接时间排序
+- 点击主机名称快速连接
+- 显示主机连接状态图标
+
+> TODO: 添加最近主机列表截图
+
+#### 快速操作
+
+<Icon name="lightning" size="1.2em" /> 常用快捷操作：
+
+- <Icon name="plus" size="1em" /> **新建连接**：打开主机添加对话框
+- <Icon name="terminal" size="1em" /> **新建终端**：创建新的终端会话
+- <Icon name="folder" size="1em" /> **打开文件传输**：打开 SFTP 浏览器
+
+#### 应用控制
+
+<Icon name="cog" size="1.2em" /> 应用选项：
+
+- <Icon name="gear" size="1em" /> **设置**：打开设置页面
+- <Icon name="info-circle" size="1em" /> **关于**：查看版本信息
+- <Icon name="sign-out-alt" size="1em" /> **退出**：完全关闭应用
+
+## <Icon name="lightning" size="1.2em" /> 快速连接
+
+### 一键连接
+
+<Icon name="plug" size="1.2em" /> 从托盘快速连接主机：
+
+1. 右键点击托盘图标
+2. 在 **"最近主机"** 列表中选择主机
+3. 点击主机名称
+4. 自动建立连接
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **优势**：无需打开主窗口即可快速连接！
+
+### 连接状态
+
+托盘菜单中的主机显示当前状态：
+
+- <Icon name="circle" size="1em" color="var(--sl-color-gray)" /> **未连接**：灰色图标
+- <Icon name="spinner" size="1em" color="var(--sl-color-warning)" /> **连接中**：黄色图标
+- <Icon name="check-circle" size="1em" color="var(--sl-color-success)" /> **已连接**：绿色图标
+
+### 断开连接
+
+<Icon name="x-circle" size="1.2em" /> 断开已连接的主机：
+
+1. 右键点击托盘图标
+2. 在 **"最近主机"** 中找到已连接的主机
+3. 点击主机旁的 **"×"** 按钮
+4. 确认断开
+
+## <Icon name="cog" size="1.2em" /> 托盘设置
+
+### 配置托盘行为
+
+进入 **设置** > **通用** > **系统托盘**：
+
+> TODO: 添加托盘设置界面截图
+
+#### 关闭按钮行为
+
+<Icon name="window" size="1.2em" /> 点击关闭按钮时：
+
+- <Icon name="window-minimize" size="1em" /> **最小化到托盘**（推荐）
+- <Icon name="sign-out-alt" size="1em" /> **直接退出应用**
+
+#### 启动选项
+
+<Icon name="rocket" size="1.2em" /> 应用启动时：
+
+- <Icon name="window" size="1em" /> **显示主窗口**
+- <Icon name="bell" size="1.2em" /> **最小化到托盘**
+
+#### 通知区域
+
+<Icon name="badge" size="1.2em" /> 托盘通知：
+
+- <Icon name="bell" size="1em" /> **显示连接通知**
+- <Icon name="bell" size="1.2em" /> **显示断开通知**
+- <Icon name="envelope" size="1.2em" /> **显示消息通知**
+
+## <Icon name="list" size="1.2em" /> 最近主机管理
+
+### 历史记录
+
+<Icon name="history" size="1.2em" /> 最近主机列表显示：
+
+- 最多 10 个最近连接的主机
+- 按最后连接时间排序
+- 自动更新列表
+
+### 固定主机
+
+<Icon name="thumbtack" size="1.2em" /> 固定常用主机到列表顶部：
+
+1. 右键点击托盘图标
+2. 在最近主机列表中找到主机
+3. 选择 **"固定到列表"**
+4. 主机将始终显示在顶部
+
+<Icon name="thumbtack" size="1em" /> 取消固定：
+
+- 右键点击固定的主机
+- 选择 **"取消固定"**
+
+### 清除历史
+
+<Icon name="eraser" size="1.2em" /> 清除最近主机历史：
+
+1. 进入 **设置** > **通用** > **历史记录**
+2. 点击 **"清除最近主机"**
+3. 确认清除
+
+## <Icon name="lightbulb" size="1.2em" /> 使用场景
+
+### 场景 1：日常运维
+
+<Icon name="wrench" size="1.2em" /> 需要频繁连接服务器：
+
+1. 将常用服务器固定到托盘菜单
+2. 需要连接时，右键托盘图标
+3. 选择服务器，一键连接
+4. 无需打开主窗口
+
+### 场景 2：后台监控
+
+<Icon name="chart-line" size="1.2em" /> 保持连接监控服务器：
+
+1. 连接到需要监控的服务器
+2. 点击关闭按钮最小化到托盘
+3. 应用在后台运行，保持连接
+4. 需要查看时点击托盘图标恢复窗口
+
+### 场景 3：快速响应
+
+<Icon name="rocket" size="1.2em" /> 需要快速响应服务器问题：
+
+1. BetaXShell 始终在托盘运行
+2. 收到告警通知
+3. 立即从托盘连接相关服务器
+4. 快速处理问题
+
+## <Icon name="keyboard" size="1.2em" /> 全局快捷键
+
+### 配置全局快捷键
+
+<Icon name="keys" size="1.2em" /> 设置全局快捷键（即使应用不在前台也能使用）：
+
+进入 **设置** > **快捷键** > **全局快捷键**：
+
+> TODO: 添加全局快捷键设置截图
+
+### 可用快捷键
+
+- **显示/隐藏窗口**：`Ctrl + Alt + B`（默认）
+- **快速连接**：`Ctrl + Alt + N`（默认）
+- **新建终端**：`Ctrl + Alt + T`（默认）
+
+<Icon name="lightbulb" size="1em" color="var(--sl-color-accent)" /> **提示**：可以自定义快捷键以避免冲突。
+
+## <Icon name="bell" size="1.2em" /> 托盘通知
+
+### 通知类型
+
+<Icon name="envelope" size="1.2em" /> 托盘可以显示各类通知：
+
+#### 连接通知
+
+- <Icon name="check-circle" size="1em" color="var(--sl-color-success)" /> 连接成功
+- <Icon name="x-circle" size="1em" color="var(--sl-color-danger)" /> 连接失败
+- <Icon name="arrows-left-right" size="1em" color="var(--sl-color-warning)" /> 连接断开
+
+#### 传输通知
+
+- <Icon name="check" size="1em" /> 文件传输完成
+- <Icon name="x" size="1em" /> 传输失败
+- <Icon name="clock" size="1em" /> 长时间传输进度
+
+#### 命令通知
+
+- <Icon name="bell" size="1em" /> 长时间命令执行完成
+- <Icon name="terminal" size="1em" /> 后台任务状态
+
+### 通知设置
+
+配置通知行为：
+
+进入 **设置** > **通知**：
+
+1. 选择要显示的通知类型
+2. 设置通知提示音
+3. 设置通知持续时间
+4. 选择是否显示通知内容
+
+## <Icon name="trophy" size="1.2em" /> 使用技巧
+
+### 技巧 1：使用全局快捷键
+
+<Icon name="keyboard" size="1.2em" /> 设置全局快捷键后：
+
+- 无需打开应用即可连接
+- 工作时保持应用在后台
+- 需要时快速调出
+
+### 技巧 2：固定常用主机
+
+<Icon name="thumbtack" size="1.2em" /> 固定最常用的 3-5 台主机：
+
+- 始终在列表顶部
+- 快速访问
+- 不被其他主机挤走
+
+### 技巧 3：合理配置关闭行为
+
+<Icon name="window" size="1.2em" /> 设置关闭按钮最小化：
+
+- 避免误关闭应用
+- 保持后台运行
+- 随时快速恢复
+
+### 技巧 4：启用通知
+
+<Icon name="bell" size="1.2em" /> 启用关键通知：
+
+- 及时了解连接状态
+- 传输完成提醒
+- 重要事件通知
+
+## <Icon name="bug" size="1.2em" /> 常见问题
+
+### 托盘图标不显示
+
+**问题**：托盘中看不到 BetaXShell 图标
+
+**解决方案**：
+1. <Icon name="search" size="1em" /> 检查通知区域的隐藏图标
+2. <Icon name="settings" size="1em" /> 在系统设置中启用 BetaXShell 通知
+3. <Icon name="arrow-clockwise" size="1em" /> 重启 BetaXShell
+
+### 无法从托盘恢复窗口
+
+**问题**：点击托盘图标没有反应
+
+**解决方案**：
+1. <Icon name="mouse-right-click" size="1em" /> 尝试右键菜单 > 显示窗口
+2. <Icon name="keyboard" size="1em" /> 使用全局快捷键 `Ctrl + Alt + B`
+3. <Icon name="power" size="1em" /> 重启应用
+
+### 托盘菜单反应慢
+
+**问题**：右键托盘图标打开菜单很慢
+
+**解决方案**：
+1. <Icon name="database" size="1em" /> 清理最近主机历史记录
+2. <Icon name="eraser" size="1em" /> 清除应用缓存
+3. <Icon name="refresh" size="1em" /> 重启应用
+
+## 相关链接
+
+- <Icon name="cog" size="1em" /> [设置说明](/user-guide/settings) - 配置托盘行为
+- <Icon name="terminal" size="1em" /> [终端使用](/user-guide/terminal) - 终端快捷键
+- <Icon name="question-circle" size="1em" /> [常见问题](/faq) - 系统托盘 FAQ
